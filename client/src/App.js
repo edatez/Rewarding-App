@@ -2,6 +2,7 @@ import React from "react";
 import { useAuthTokenStore } from "./utils/auth";
 
 import {BrowserRouter as Router, Route} from "react-router-dom";
+import Home from "./pages/Home";
 import Register from "./pages/Register";
 
 // import {useStoreContext} from "./store";

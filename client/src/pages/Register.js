@@ -4,8 +4,6 @@ import api from "../utils/api";
 import { useLogin } from "../utils/auth";
 
 function Register() {
-    // const isAuth=useIsAuthenticated();
-    // const logout=useLogout();
 
     const nameInput = useRef();
     const emailInput = useRef();
@@ -28,19 +26,12 @@ function Register() {
             .then(()=>window.location.href = "./" );
        
 
-        // console.log("submit");
-        // console.log(nameInput.current.value);
-        // console.log(emailInput.current.value);
-        // console.log(passwordInput.current.value);
-        // console.log(password2Input.current.value);
-
-
     }
     
     return (
         <div>
             <h1>Register</h1>
-            <form onSubmit={}>
+            <form onSubmit={handleSubmit}>
             <input type="text" name="name" placeholder="username" ref={nameInput} />
             <br />
             <input type="email" name="email" placeholder="email" ref={emailInput} />
@@ -51,14 +42,7 @@ function Register() {
             <br />
             <button>Submit</button>
             </form>
-            {/* {
-                isAuth
-                    ? <button onClick={logout}>Logout</button>
-                    :<a href="/login">Login</a>
-            }
 
-            <br />
-            <a href="/register">Register</a> */}
         </div>
     )
 }
