@@ -11,40 +11,34 @@ function Login() {
     
     const login = useLogin();
 
-    const handleSubmit =(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
  
         const email=emailInput.current.value;
         const password=passwordInput.current.value;
 
-        login( { email, password } )
-            .then( userAuth => {
-                console.log( userAuth ); 
+  // Auto Login after registration
+       await login( { email, password } )
+            // .then( userAuth => {
+            //     // console.log( userAuth ); 
                 window.location.href ="/";
-            })
-            .catch( errors => console.log(errors) );
+            };
+            // .catch( errors => console.log(errors) );
         
-};
+
         
     
     return (
         <div>
-            <h1>Register</h1>
-            <form onSubmit={}>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
             <input type="email" name="email" placeholder="email" ref={emailInput} />
             <br />
             <input type="password" name="password" placeholder="Password" ref={passwordInput} />
             <br />
             <button>Submit</button>
             </form>
-            {/* {
-                isAuth
-                    ? <button onClick={logout}>Logout</button>
-                    :<a href="/login">Login</a>
-            }
 
-            <br />
-            <a href="/register">Register</a> */}
         </div>
     )
 }
