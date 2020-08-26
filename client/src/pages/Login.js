@@ -11,22 +11,23 @@ function Login() {
     
     const login = useLogin();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
  
         const email=emailInput.current.value;
         const password=passwordInput.current.value;
 
   // Auto Login after registration
-       await login( { email, password } )
-            // .then( userAuth => {
-            //     // console.log( userAuth ); 
+        login( { email, password } )
+            .then( userAuth =>{
+                console.log( userAuth )
                 window.location.href ="/";
-            };
-            // .catch( errors => console.log(errors) );
+            }) 
+               
+            .catch( errors => console.log(errors) );
         
 
-        
+    }   
     
     return (
         <div>
