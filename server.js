@@ -4,12 +4,11 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
-const mongoose = require("mongoose");
-const passport = require("passport");
 
-// Data parsing middleware.
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+const passport = require("passport");
 
 require("./models");
 
@@ -25,13 +24,15 @@ app.use( "/api", require("./routes/authController") );
 
 // Send every request to the React app
 // Define any API routes before this runs
-// app.get("*", function(req, res) {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
+const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    process.env.MONGODB_URI || "mongodb://localhost/REWARDDB",
+    process.env.MONGODB_URI || "mongodb://localhost/MY_DATABASE_NAME",
     { useNewUrlParser: true }
   )
   .then(() => console.log("MongoDB successfully connected"))

@@ -39,7 +39,7 @@ const applyAuthToken = token => {
 
 export const useAuthTokenStore = () => {
 
-    const [ store, dispatch ] = useStoreContext();
+    const [ , dispatch ] = useStoreContext();
 
     useEffect(() => {
         // Check for token to keep user logged in
@@ -96,7 +96,7 @@ export const useIsAuthenticated = () => {
 
 export const useLogin = () => {
 
-    const [ store, dispatch ] = useStoreContext();
+    const [ , dispatch ] = useStoreContext();
 
     return async ( credential ) => {
     
@@ -114,7 +114,7 @@ export const useLogin = () => {
 
 export const useLogout = () => {
 
-    const [ store, dispatch ] = useStoreContext();
+    const [ , dispatch ] = useStoreContext();
 
     return () => {
 

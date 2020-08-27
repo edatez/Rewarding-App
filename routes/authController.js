@@ -11,10 +11,6 @@ const validateLoginInput = require("../config/validation/login");
 // Load User model
 const {User} = require("../models");
 
-router.get("/test", (req, res)=> {
-  res.send("okay")
-});
-
 router.post("/authenticated", passport.authenticate('jwt', { session: false }), (req, res) => {
 
   res.json( req.user );
