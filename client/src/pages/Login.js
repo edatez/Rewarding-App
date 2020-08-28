@@ -30,17 +30,37 @@ function Login() {
     }   
     
     return (
-        <div>
-            <h1>Login</h1>
+        
+        <div class="container">                    
+            <h1 class="title">Login</h1>
             <form onSubmit={handleSubmit}>
-            <input type="email" name="email" placeholder="email" ref={emailInput} />
+            <div class="field">
+                <p class="control has-icons-left">                
+                    <input class="input" type="email" name="email" placeholder="email" ref={emailInput} />
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>                    
+                </p>
+            </div>            
             <br />
-            <input type="password" name="password" placeholder="Password" ref={passwordInput} />
+            <div class="field">
+                <p class="control has-icons-left">             
+                    <input class="input" type="password" name="password" placeholder="Password" ref={passwordInput} />
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>                            
+                </p>
+            </div>
+            
             <br />
-            <button>Submit</button>
+            <div class="field">
+                <p class="control">
+                    <button class="button is-success">Submit</button>
+                </p>
+            </div>
             </form>
-
         </div>
+              
     )
 }
 
