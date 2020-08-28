@@ -25,7 +25,6 @@ function Register() {
             .then(()=>login( { email, password } ) )
             .then(()=>window.location.href = "./" );
        
-
     }
     
     return (
