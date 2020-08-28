@@ -29,18 +29,50 @@ function Register() {
     }
     
     return (
-        <div>
-            <h1>Register</h1>
+        <div class="container">
+            <h1 class="title">Register</h1>
             <form onSubmit={handleSubmit}>
-            <input type="text" name="name" placeholder="username" ref={nameInput} />
+            <div class="field">                
+                <div class="control has-icons-left has-icons-right">                    
+                    <input class="input" type="text" name="name" placeholder="username" ref={nameInput} />
+                    <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                    </span>                    
+                </div>                
+            </div>            
             <br />
-            <input type="email" name="email" placeholder="email" ref={emailInput} />
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">                                    
+                    <input class="input" type="email" name="email" placeholder="email" ref={emailInput} />
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>                    
+                </p>
+            </div>             
             <br />
-            <input type="password" name="password" placeholder="Password" ref={passwordInput} />
+            <div class="field">
+                <p class="control has-icons-left">                                 
+                    <input class="input" type="password" name="password" placeholder="Password" ref={passwordInput} />
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>                            
+                </p>
+            </div>            
             <br />
-            <input type="password" name="password2" placeholder="Retype password" ref={password2Input} />
+            <div class="field">
+                <p class="control has-icons-left">                                 
+                    <input class="input" type="password" name="password2" placeholder="Retype password" ref={password2Input} />                    
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>                            
+                </p>
+            </div>            
             <br />
-            <button>Submit</button>
+            <div class="field">
+                <p class="control">
+                    <button class="button is-success">Submit</button>
+                </p>
+            </div>           
             </form>
 
         </div>
@@ -48,3 +80,4 @@ function Register() {
 }
 
 export default Register;
+
