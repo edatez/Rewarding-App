@@ -9,6 +9,8 @@ function Home() {
     return (
         <div>
             <h1>Home Page</h1>
+
+
             {
                 isAuth
                     ? <button onClick={logout}>Logout</button>
@@ -17,6 +19,7 @@ function Home() {
 
             <br />
             <a href="/register">Register</a>
+            
         </div>
     )
 }
