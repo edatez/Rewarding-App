@@ -5,45 +5,32 @@ const {Ring} = require("../models");
 
 // Routes
 router.get("/", (req, res) => {
-  console.log("Read user ring");
-  Ring.findOne({ email: req.body.email}).then(ring => {
-    if(ring === null) {
-      console.log("No user ring. Create it.")
-      Ring.create({ email: req.body.email, housechore: 0, study: 0, sleep: 0}).then(newRing => {
-        return res.status(200).json(newRing);
-      });
+  console.log("Read user rings");
+  Ring.find({ email: req.body.email}).then(rings => {
+    if(rings === null) {
+      rings = [];
     }
-    else {
-      return res.status(200).json(ring);
-    }
+
+    return res.status(200).json(rings);
   });
 });
 
 
 router.post("/", (req, res) => {
   console.log("Create user ring");
-  Ring.findOne({ email: req.body.email}).then(ring => {
-    if(ring === null) {
-      Ring.create({
-        email: req.body.email, 
-        housechore: req.body.housechore, 
-        study: req.body.study,
-        sleep: req.body.sleep
-      }).then(newRing => {
-        return res.status(200).json(newRing);
-      });
-    }
-    else {
-      console.log("Error - User already has a ring")
-      return res.status(400).json({error: "user already has a ring"});
-    }
-  });
+    Ring.create({
+      email: req.body.email, 
+      activity: req.body.activity, 
+      points: req.body.points
+    }).then(newRing => {
+      return res.status(200).json(newRing);
+    });
 });
 
 
 router.delete("/", (req, res) => {
   console.log("Delete ring");
-  Ring.deleteOne({email: req.body.email}).then(() => {
+  Ring.deleteOne({email: req.body.email, activity: req.body.activity}).then(() => {
     res.end();
   });
 });
@@ -51,25 +38,16 @@ router.delete("/", (req, res) => {
 router.put("/", (req, res) => {
   console.log("Update ring");
   Ring.where({
-      email: req.body.email
+      email: req.body.email,
+      activity: req.body.activity
     }).
-    update(
-    {
-      housechore: req.body.housechore,
-      study: req.body.study,
-      sleep: req.body.sleep
+    update({
+      points: req.body.points
     }
   ).then(result => {
     if (result[0] === 0) {
-      console.log("No user ring. Create it with the updated values.")
-      Ring.create({
-        email: req.body.email,
-        housechore: req.body.housechore,
-        study: req.body.study,
-        sleep: req.body.sleep
-      }).then(newRing => {
-        return res.status(200).json(newRing);
-      });
+      console.log("No such activity.")
+      return res.status(404).json({error: "no activity with that name"});
     } else {
       console.log(result);
       res.status(200).end();

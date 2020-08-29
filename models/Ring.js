@@ -7,19 +7,13 @@ const RingSchema = new Schema({
     type: String,
     required: true
   },
-  housechore: {
-    type: Number,
+  activity: {
+    type: String,
     required: true
   },
-  study: {
-    type: Number,
-    required: true
-  },
-  sleep: {
+  points: {
     type: Number,
     required: true
   }
-
 });
-
 module.exports = Ring = mongoose.model("ring", RingSchema);
