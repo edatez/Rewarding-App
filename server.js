@@ -12,8 +12,8 @@ const passport = require("passport");
 
 require("./models");
 
-app.use(passport.initialize());
-require("./config/passport")(passport);
+//app.use(passport.initialize());
+//require("./config/passport")(passport);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -21,6 +21,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use( "/api", require("./routes/authController") );
+app.use( "/api/ring", require("./routes/ringController") );
 
 // Send every request to the React app
 // Define any API routes before this runs

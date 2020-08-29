@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "50158542-7aeb-4f24-8c52-4c5a2734542c",
+		"name": "Rings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PUT ring",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "ayse@test.com",
+							"type": "text"
+						},
+						{
+							"key": "housechore",
+							"value": "35",
+							"type": "text"
+						},
+						{
+							"key": "study",
+							"value": "74",
+							"type": "text"
+						},
+						{
+							"key": "sleep",
+							"value": "23",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/ring",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"ring"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ring",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "ayse@test.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/ring",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"ring"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE ring",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "ayse@test.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/ring",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"ring"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST ring",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "ayse@test.com",
+							"type": "text"
+						},
+						{
+							"key": "housechore",
+							"value": "30",
+							"type": "text"
+						},
+						{
+							"key": "study",
+							"value": "70",
+							"type": "text"
+						},
+						{
+							"key": "sleep",
+							"value": "20",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/ring",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"ring"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
