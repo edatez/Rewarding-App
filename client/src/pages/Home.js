@@ -7,6 +7,20 @@ function Home() {
     const logout=useLogout();
     
     return (
+        <div>
+            <h1>Home Page</h1>
+
+
+            {
+                isAuth
+                    ? <button onClick={logout}>Logout</button>
+                    :<a href="/login">Login</a>
+            }
+
+            <br />
+            <a href="/register">Register</a>
+            
+        </div>
         <section class="hero">    
             <div class="hero-body">
                 <div class="container">
