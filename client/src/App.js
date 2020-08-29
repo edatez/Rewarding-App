@@ -10,6 +10,8 @@ import About from "./pages/About";
 import {useStoreContext} from "./store";
 import Footer from "./components/footer";
 import Dashboard from "./pages/Dashboard";
+import CreateActivities from "./pages/CreateActivities";
+import CreateRewards from "./pages/CreateRewards";
 
 function App() {
   
@@ -23,6 +25,8 @@ function App() {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/create-activities" component={CreateActivities} />
+                <Route exact path="/create-rewards" component={CreateRewards} />                
                 <Route exact path="/about" component={About} />
               </div>
             </Router>

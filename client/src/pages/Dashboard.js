@@ -16,6 +16,15 @@ function Dashboard () {
             
         <Container>  
             <Heading>Dashboard</Heading>
+
+            <Container style={{ marginBottom: 40 }}>
+                <Heading subtitle size={6}>
+                    Current balance = {50}
+                </Heading>
+                <Heading subtitle size={6}>
+                    Progress for = {"reward list"}
+                </Heading>
+            </Container>
             <div style={{ width: 250 }}>
                 <CircularProgressbar 
                     value={percentage} 
@@ -68,6 +77,11 @@ function Dashboard () {
 }
 
 export default Dashboard;
+
+// Link to current point balance
+// Link to reward list as dropdown
+// Percentage = current balance / points for selected reward
+// Icon for reward in the middle of ring
 
 
 
