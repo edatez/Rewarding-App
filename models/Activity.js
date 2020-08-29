@@ -2,10 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Create Schema
-const RingSchema = new Schema({
-  email: {
-    type: String,
-    required: true
+const ActivitySchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref:"users"
   },
   activity: {
     type: String,
@@ -16,4 +17,4 @@ const RingSchema = new Schema({
     required: true
   }
 });
-module.exports = Ring = mongoose.model("ring", RingSchema);
+module.exports = Activity = mongoose.model("activity", ActivitySchema);
