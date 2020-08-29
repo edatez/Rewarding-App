@@ -18,6 +18,12 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  childName: {
+    type: String,
+  },
+  childBirthday:{
+    type: Date
   }
 });
 
