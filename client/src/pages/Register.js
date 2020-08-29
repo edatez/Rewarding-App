@@ -1,4 +1,6 @@
 import React, {useRef} from "react";
+import { Container, Form, Button, Heading } from 'react-bulma-components';
+import 'react-bulma-components/dist/react-bulma-components.min.css';
 
 import api from "../utils/api";
 import { useLogin } from "../utils/auth";
@@ -23,58 +25,60 @@ function Register() {
         api
             .register({ name, email, password, password2 })
             .then(()=>login( { email, password } ) )
-            .then(()=>window.location.href = "./" );
+            .then(()=>window.location.href = "./dashboard" );
        
     }
+
+    const { Input, Field, Control, Label } = Form;
     
     return (
-        <div class="container">
-            <h1 class="title">Register</h1>
+        <Container>
+            <Heading>Register</Heading>
             <form onSubmit={handleSubmit}>
-            <div class="field">                
-                <div class="control has-icons-left has-icons-right">                    
-                    <input class="input" type="text" name="name" placeholder="username" ref={nameInput} />
-                    <span class="icon is-small is-left">
-                    <i class="fas fa-user"></i>
+            <Field>                
+                <Control className="has-icons-left has-icons-right">                    
+                    <input className="input" type="text" name="name" placeholder="username" ref={nameInput} />
+                    <span className="icon is-small is-left">
+                    <i className="fas fa-user"></i>
                     </span>                    
-                </div>                
-            </div>            
+                </Control>                
+            </Field>            
             <br />
-            <div class="field">
-                <p class="control has-icons-left has-icons-right">                                    
-                    <input class="input" type="email" name="email" placeholder="email" ref={emailInput} />
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
+            <Field>
+                <Control className="has-icons-left has-icons-right">                                    
+                    <input className="input" type="email" name="email" placeholder="email" ref={emailInput} />
+                    <span className="icon is-small is-left">
+                        <i className="fas fa-envelope"></i>
                     </span>                    
-                </p>
-            </div>             
+                </Control>
+            </Field>             
             <br />
-            <div class="field">
-                <p class="control has-icons-left">                                 
-                    <input class="input" type="password" name="password" placeholder="Password" ref={passwordInput} />
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
+            <Field>
+                <Control className="has-icons-left">                                 
+                    <input className="input" type="password" name="password" placeholder="Password" ref={passwordInput} />
+                    <span className="icon is-small is-left">
+                        <i className="fas fa-lock"></i>
                     </span>                            
-                </p>
-            </div>            
+                </Control>
+            </Field>            
             <br />
-            <div class="field">
-                <p class="control has-icons-left">                                 
-                    <input class="input" type="password" name="password2" placeholder="Retype password" ref={password2Input} />                    
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
+            <Field>
+                <Control className="has-icons-left">                                 
+                    <input className="input" type="password" name="password2" placeholder="Retype password" ref={password2Input} />                    
+                    <span className="icon is-small is-left">
+                        <i className="fas fa-lock"></i>
                     </span>                            
-                </p>
-            </div>            
+                </Control>
+            </Field>            
             <br />
-            <div class="field">
-                <p class="control">
-                    <button class="button is-success">Submit</button>
-                </p>
-            </div>           
+            <Field>
+                <Control>
+                    <Button className="is-success">Submit</Button>
+                </Control>
+            </Field>           
             </form>
 
-        </div>
+        </Container>
     )
 }
 

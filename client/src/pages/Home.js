@@ -1,45 +1,38 @@
 import React from "react";
+import { Container, Hero, Button, Heading, Form } from 'react-bulma-components';
+import 'react-bulma-components/dist/react-bulma-components.min.css';
 
 import {useIsAuthenticated, useLogout} from "../utils/auth";
 
 function Home() {
     const isAuth=useIsAuthenticated();
     const logout=useLogout();
+
+    const { Input, Field, Control, Label } = Form;
     
     return (
-        <div>
-            <h1>Home Page</h1>
+        <div>                
+        
+            <Hero>    
+                <Hero.Body>
+                    <Container>
+                        <Heading>Rewarding App</Heading>
+                        {
+                            isAuth
+                                ? <Button onClick={logout}>Logout</Button>
+                                : <Button ><a href="/login">Login</a></Button>
+                        }
 
-
-            {
-                isAuth
-                    ? <button onClick={logout}>Logout</button>
-                    :<a href="/login">Login</a>
-            }
-
-            <br />
-            <a href="/register">Register</a>
-            
-        </div>
-        <section class="hero">    
-            <div class="hero-body">
-                <div class="container">
-                    <h1 class="title">Rewarding App</h1>
-                    {
-                        isAuth
-                            ? <button class="button level-left" onClick={logout}>Logout</button>
-                            : <button class="button level-left"><a href="/login">Login</a></button>
-                    }
-
-                    <br />
-                    <div class="field">
-                        <p class="control">
-                            <button class="button level-right"><a href="/register">Register</a></button>
-                        </p>
-                    </div>  
-                </div>
-            </div>
-        </section>    
+                        <br />
+                        <Field>
+                            <Control>
+                                <Button ><a href="/register">Register</a></Button>
+                            </Control>
+                        </Field>  
+                    </Container>
+                </Hero.Body>
+            </Hero>
+        </div>   
     )
 }
 
