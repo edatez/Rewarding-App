@@ -12,8 +12,8 @@ const passport = require("passport");
 
 require("./models");
 
-//app.use(passport.initialize());
-//require("./config/passport")(passport);
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
