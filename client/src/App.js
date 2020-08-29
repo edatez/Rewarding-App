@@ -9,6 +9,7 @@ import About from "./pages/About";
 
 import {useStoreContext} from "./store";
 import Footer from "./components/footer";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   
@@ -21,6 +22,7 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
+                <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/about" component={About} />
               </div>
             </Router>

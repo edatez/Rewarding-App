@@ -1,4 +1,6 @@
 import React, {useRef} from "react";
+import { Container, Form, Button, Heading } from 'react-bulma-components';
+import 'react-bulma-components/dist/react-bulma-components.min.css';
 
 import { useLogin } from "../utils/auth";
 
@@ -21,7 +23,7 @@ function Login() {
         login( { email, password } )
             .then( userAuth =>{
                 console.log( userAuth )
-                window.location.href ="/";
+                window.location.href ="/dashboard";
             }) 
                
             .catch( errors => console.log(errors) );
@@ -29,37 +31,39 @@ function Login() {
 
     }   
     
+    const { Input, Field, Control, Label } = Form;
+
     return (
         
-        <div class="container">                    
-            <h1 class="title">Login</h1>
+        <Container>                    
+            <Heading>Login</Heading>
             <form onSubmit={handleSubmit}>
-            <div class="field">
-                <p class="control has-icons-left">                
-                    <input class="input" type="email" name="email" placeholder="email" ref={emailInput} />
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
+            <Field>
+                <Control className="has-icons-left">                
+                    <input className="input" type="email" name="email" placeholder="email" ref={emailInput} />
+                    <span className="icon is-small is-left">
+                        <i className="fas fa-envelope"></i>
                     </span>                    
-                </p>
-            </div>            
+                </Control>
+            </Field>            
             <br />
-            <div class="field">
-                <p class="control has-icons-left">             
-                    <input class="input" type="password" name="password" placeholder="Password" ref={passwordInput} />
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
+            <Field>
+                <Control className="has-icons-left">             
+                    <input className="input" type="password" name="password" placeholder="Password" ref={passwordInput} />
+                    <span className="icon is-small is-left">
+                        <i className="fas fa-lock"></i>
                     </span>                            
-                </p>
-            </div>
+                </Control>
+            </Field>
             
             <br />
-            <div class="field">
-                <p class="control">
-                    <button class="button is-success">Submit</button>
-                </p>
-            </div>
+            <Field>
+                <Control>
+                    <Button className="is-success">Submit</Button>
+                </Control>
+            </Field>
             </form>
-        </div>
+        </Container>
               
     )
 }
