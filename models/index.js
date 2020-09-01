@@ -1,4 +1,4 @@
 module.exports = {
   User: require("./User"),
-  Ring: require("./Ring")
+  Activity: require("./Activity")
 }
