@@ -27,6 +27,7 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Activity"
   }]
+
 });
 
 module.exports = User = mongoose.model("users", UserSchema);
