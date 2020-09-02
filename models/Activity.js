@@ -3,12 +3,7 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const ActivitySchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref:"users"
-  },
-  activity: {
+ activity: {
     type: String,
     required: true
   },
@@ -17,4 +12,5 @@ const ActivitySchema = new Schema({
     required: true
   }
 });
+
 module.exports = Activity = mongoose.model("activity", ActivitySchema);
