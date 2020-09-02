@@ -18,7 +18,15 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  children:[{
+    type: Schema.Types.ObjectId,
+    ref: "Children"
+  }],
+  activities:[{
+    type: Schema.Types.ObjectId,
+    ref: "Activity"
+  }]
 });
 
 module.exports = User = mongoose.model("users", UserSchema);

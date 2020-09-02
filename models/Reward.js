@@ -1,3 +1,5 @@
+//WILL REMOVE ONCE SCHEMA IS COMPLETE
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
