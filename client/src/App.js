@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
+import Settings from "./pages/Settings";
 
 import {useStoreContext} from "./store";
 import Navbar from "./components/navbar"
@@ -34,6 +35,7 @@ function App() {
                 <Route exact path="/add-points" component={AddPoints} />
                 <Route exact path="/redeem-rewards" component={RedeemRewards} />                
                 <Route exact path="/about" component={About} />
+                <Route exact path="/settings" component={Settings} />
               </div>
             </Router>
 
