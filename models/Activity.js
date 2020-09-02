@@ -10,6 +10,10 @@ const ActivitySchema = new Schema({
   activityPoints: {
     type: Number,
     required: true
+  },
+  completed:{
+    type: Boolean,
+    required: true
   }
 });
 module.exports = Activity = mongoose.model("activity", ActivitySchema);

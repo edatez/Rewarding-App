@@ -1,6 +1,22 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//rewards subschema
+const rewardsSubSchema = mongoose.Schema({
+    rewardName: {
+        type: String,
+        required: true
+    },
+    rewardPoints:{
+        type: Number,
+        required: true
+    },
+    redeemed:{
+        type: Boolean,
+        required: true
+    }
+})
+
 // Create Schema
 const ChildrenSchema = new Schema({
     childName:{
@@ -11,11 +27,7 @@ const ChildrenSchema = new Schema({
         type: Number,
         required: true
     }],
-    rewards:[{
-        rewardName: String,
-        rewardPoints: Number,
-        redeemed: Boolean
-    }]
+    rewards:[rewardsSubSchema]
 })
 
 module.exports = Children = mongoose.model("Children", ChildrenSchema);

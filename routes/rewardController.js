@@ -28,9 +28,9 @@ router.post("/", passport.authenticate('jwt', { session: false }), (req, res) =>
 });
 
 
-router.delete("/", passport.authenticate('jwt', { session: false }), (req, res) => {
+router.delete("/:reward", passport.authenticate('jwt', { session: false }), (req, res) => {
   console.log("Delete Reward");
-  Reward.deleteOne({user: req.user._id, reward: req.body.reward}).then(() => {
+  Reward.deleteOne({user: req.user._id, reward: req.params.reward}).then(() => {
     res.end();
   });
 });

@@ -34,7 +34,7 @@ const mongoose = require("mongoose");
 
 mongoose
   .connect(
-    process.env.MONGODB_URI || "mongodb://localhost/MY_DATABASE_NAME",
+    process.env.MONGODB_URI || "mongodb://localhost/reward_app_database",
     { useNewUrlParser: true }
   )
   .then(() => console.log("MongoDB successfully connected"))
