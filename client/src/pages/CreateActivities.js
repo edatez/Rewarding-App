@@ -15,7 +15,7 @@ function CreateActivities () {
                 <Heading subtitle size={4}>
                     Current Activity List
                 </Heading>               
-                    <Table>
+                    <Table className="is-narrow is-hoverable is-bordered">
                         <thead>
                             <tr>                        
                                 <th>Activity</th>                        
@@ -60,7 +60,12 @@ function CreateActivities () {
                     <Control>
                         <Button className="is-success">Add Activities</Button>
                     </Control>
-                </Field>                
+                </Field> 
+                <Field>
+                    <Control>
+                        <Button className="is-link is-light"><a href="/add-points">Back to Add Points</a></Button>
+                    </Control>
+                </Field>               
             </Container>
 
         </Container>
