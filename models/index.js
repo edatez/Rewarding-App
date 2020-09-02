@@ -1,4 +1,5 @@
 module.exports = {
   User: require("./User"),
-  Activity: require("./Activity")
+  Activity: require("./Activity"),
+  Reward: require("./Reward")
 }
