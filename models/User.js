@@ -19,12 +19,15 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  childName: {
-    type: String,
-  },
-  childBirthday:{
-    type: Date
-  }
+  children:[{
+    type: Schema.Types.ObjectId,
+    ref: "Children"
+  }],
+  activities:[{
+    type: Schema.Types.ObjectId,
+    ref: "Activity"
+  }]
+
 });
 
 module.exports = User = mongoose.model("users", UserSchema);

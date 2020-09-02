@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const ActivitySchema = new Schema({
- activity: {
+  activity: {
     type: String,
     required: true
   },
-  points: {
+  activityPoints: {
     type: Number,
     required: true
   }
