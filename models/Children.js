@@ -13,7 +13,7 @@ const ChildrenSchema = new Schema({
     }],
     rewards:[{
         rewardName: String,
-        rewardValue: Number,
+        rewardPoints: Number,
         redeemed: Boolean
     }]
 })

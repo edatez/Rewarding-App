@@ -7,7 +7,7 @@ const ActivitySchema = new Schema({
     type: String,
     required: true
   },
-  activityValue: {
+  activityPoints: {
     type: Number,
     required: true
   }
