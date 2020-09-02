@@ -1,21 +1,39 @@
-// import React from "react";
-// import { Navbar as BulmaNavbar, Content } from 'react-bulma-components';
-// function Navbar() {
-//     return (
-//         <nav class="navbar" role="navigation" aria-label="main navigation">
-//         <div class="navbar-brand">
-//           <a class="navbar-item" href="https://versions.bulma.io/0.7.0">
-//             <img src="https://versions.bulma.io/0.7.0/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
-//           </a>
-      
-//           <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-//             <span aria-hidden="true"></span>
-//             <span aria-hidden="true"></span>
-//             <span aria-hidden="true"></span>
-//           </a>
-//         </div>
-//       </nav>   
-//     )
-// }
+import React from "react";
+import { Navbar} from 'react-bulma-components';
+import img from "../../logo/logo_1.png"
+import "./style.sass"
 
-// export default Footer;
+function RewardNavbar() {
+
+  return (
+    <Navbar
+
+    >
+      <Navbar.Brand>
+        <Navbar.Item renderAs="a" href="../../pages/Dashboard.js">
+          <img src={img} alt="EarnIt Logo"  />
+        </Navbar.Item>     
+      </Navbar.Brand> 
+
+        <Navbar.Container>
+          <Navbar.Item href="#">
+            <Navbar.Item href="../../pages/About.js">
+              About 
+            </Navbar.Item>
+            <Navbar.Item href="../../pages/Settings.js">
+              Settings 
+            </Navbar.Item>
+          </Navbar.Item>
+  
+        </Navbar.Container>
+        <Navbar.Container position="end">
+            <Navbar.Item href="#">
+                  Log Out
+            </Navbar.Item>
+          </Navbar.Container>
+     
+    </Navbar>
+  )
+};
+
+export default RewardNavbar;

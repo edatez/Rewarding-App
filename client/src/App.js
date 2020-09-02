@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import About from "./pages/About";
 
 import {useStoreContext} from "./store";
+import Navbar from "./components/navbar"
 import Footer from "./components/footer";
 import Dashboard from "./pages/Dashboard";
 import CreateActivities from "./pages/CreateActivities";
@@ -19,6 +20,7 @@ function App() {
 
     return (
           <div className="App">
+          <Navbar></Navbar>
             <Router>
               <div>
                 <Route exact path="/" component={Home} />
