@@ -1,8 +1,50 @@
-import React from "react";
+import React, { useState, useEffect  } from "react";
 import { Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
+import axios from "axios";
 
 function CreateRewards () {
+    const [rewards, setRewards] = useState([])
+    const [formObject, setFormObject] = useState({})
+
+    useEffect(() => {
+        loadRewards()
+      }, [])
+
+    const api = "http://localhost:3001";
+    function loadRewards() {
+        (new Promise(r => setTimeout(r, 1000))).then( ()=> {
+            axios.get(api + "/api/reward")
+            .then(res => 
+                setRewards(res.data)
+            )
+            .catch(err => console.log(err))
+        });
+    };
+
+    var handleInputChange = event => {
+        const { name, value } = event.target;
+        setFormObject({...formObject, [name]: value})
+      };
+
+    var handleFormSubmit = event => {
+        // Preventing the default behavior of the form submit (which is to refresh the page)
+        event.preventDefault();
+        axios.post(api + "/api/reward", {
+            reward: formObject.reward,
+            points: formObject.points
+          })
+        .then(res => {
+            loadRewards();
+        })
+        .catch(err => console.log(err));
+      };
+    
+    var handleDelete = (name) => {
+        axios.delete(api + "/api/reward/" + name)
+        .then(res => loadRewards())
+        .catch(err => console.log(err));
+    } 
 
     const { Input, Field, Control, Label } = Form;
        
@@ -15,24 +57,25 @@ function CreateRewards () {
                 <Heading subtitle size={4}>
                     Current Reward List
                 </Heading>               
-                    <Table>
+                    <Table className="is-narrow is-hoverable is-bordered">
                         <thead> 
                             <tr>                        
                                 <th>Reward</th>                        
                                 <th>Point</th>
-                                <th>Show/Hide</th>
                                 <th>Delete</th>
+                                <th>Show/Hide</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>Bike</th>                                
-                                <td>200</td>
+                            {rewards.map(reward => (
+                            <tr key={reward.reward}>
+                                <th>{reward.reward}</th>                                
+                                <td>{reward.points}</td>
+                                <td><Button onClick={()=>handleDelete(reward.reward)}>Delete</Button></td>
                                 <td>X</td>
-                                <td></td>
                             </tr>
+                            ))}
                         </tbody>
-
                     </Table>
                 
             </Container>
@@ -42,13 +85,13 @@ function CreateRewards () {
                     Add New Reward
                 </Heading>
 
-                <form onSubmit>
+                <form>
                     <Field>                
                         <Control>                    
-                            <input className="input" type="text" name="reward" placeholder="Enter Reward"/>                                                
+                            <input className="input" type="text" name="reward" onChange={handleInputChange} placeholder="Enter Reward"/>                                                
                         </Control> 
                         <Control>                    
-                            <input className="input" type="text" name="point" placeholder="Enter Point for Reward"/>                                                
+                            <input className="input" type="text" name="points" onChange={handleInputChange} placeholder="Enter Point for Reward"/>                                                
                         </Control>               
                     </Field>
                 </form> 
@@ -58,9 +101,14 @@ function CreateRewards () {
             <Container style={{ marginTop: 40 }}>
                 <Field>
                     <Control>
-                        <Button className="is-success">Add Reward</Button>
+                        <Button onClick={handleFormSubmit} className="is-success">Add Reward</Button>
                     </Control>
-                </Field>                
+                </Field>
+                <Field>
+                    <Control>
+                        <Button className="is-link is-light"><a href="/redeem-rewards">Back to Redeem Rewards</a></Button>
+                    </Control>
+                </Field>                 
             </Container>
 
         </Container>

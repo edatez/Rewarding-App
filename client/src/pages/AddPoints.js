@@ -2,34 +2,34 @@ import React from "react";
 import { Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 
-function CreateActivities () {
+function AddPoints () {
 
     const { Input, Field, Control, Label } = Form;
        
     return (
             
         <Container>  
-            <Heading>Create Activities</Heading>
+            <Heading>Add Points</Heading>
+
+            <Heading subtitle size={5}>Current Balance: {50}</Heading>
 
             <Container style={{ marginBottom: 40 }}>
                 <Heading subtitle size={4}>
-                    Current Activity List
+                    Select Activity to Add
                 </Heading>               
                     <Table className="is-narrow is-hoverable is-bordered">
                         <thead>
                             <tr>                        
                                 <th>Activity</th>                        
                                 <th>Point</th>
-                                <th>Show/Hide</th>
-                                <th>Delete</th>
+                                <th>Select</th>                                
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th>Reading</th>                                
+                                <th><img style={{ width: 40 }} src="https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-05-128.png"></img>Reading</th>                                
                                 <td>20</td>
-                                <td>X</td>
-                                <td></td>
+                                <td>X</td>                                
                             </tr>
                         </tbody>
 
@@ -37,7 +37,7 @@ function CreateActivities () {
                 
             </Container>
             
-            <Container>
+            {/* <Container>
                 <Heading subtitle size={4}>
                     Add New Activity
                 </Heading>
@@ -53,17 +53,17 @@ function CreateActivities () {
                     </Field>
                 </form> 
                 
-            </Container>
+            </Container> */}
 
             <Container style={{ marginTop: 40 }}>
                 <Field>
                     <Control>
-                        <Button className="is-success">Add Activities</Button>
+                        <Button className="is-success">Add Points</Button>
                     </Control>
                 </Field> 
                 <Field>
                     <Control>
-                        <Button className="is-link is-light"><a href="/add-points">Back to Add Points</a></Button>
+                        <Button className="is-link is-light"><a href="/create-activities">Create Activities</a></Button>
                     </Control>
                 </Field>               
             </Container>
@@ -74,7 +74,7 @@ function CreateActivities () {
 
 }
 
-export default CreateActivities;
+export default AddPoints;
 
 // Table for current activities: show activities, points, checkbox to show/hide/delete
 // Form to enter activities, points
