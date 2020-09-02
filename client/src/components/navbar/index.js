@@ -3,15 +3,18 @@ import { Navbar} from 'react-bulma-components';
 import img from "../../logo/logo_1.png"
 
 import "./style.sass"
+import { useLogout } from "../../utils/auth";
 
 function RewardNavbar() {
+
+  const logout = useLogout();
 
   return (
     <Navbar
 
     >
       <Navbar.Brand>
-        <Navbar.Item renderAs="a" href="/Dashboard">
+        <Navbar.Item style={{padding:0}} renderAs="a" href="/Dashboard">
           <img src={img} alt="EarnIt Logo"/>
         </Navbar.Item>     
       </Navbar.Brand> 
@@ -28,7 +31,7 @@ function RewardNavbar() {
   
         </Navbar.Container>
         <Navbar.Container position="end">
-            <Navbar.Item href="#">
+            <Navbar.Item onClick={logout} >
                   Log Out
             </Navbar.Item>
           </Navbar.Container>

@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import api from "./api";
 import { useStoreContext, getStoreAction } from "../store";
 import { LOGIN_USER, LOGOUT_USER } from "../store/actions";
+import { useHistory } from "react-router-dom";
 
 const setAuthToken = token => {
 
@@ -115,13 +116,13 @@ export const useLogin = () => {
 export const useLogout = () => {
 
     const [ , dispatch ] = useStoreContext();
-
+    const history = useHistory()
     return () => {
 
         setAuthToken( false );
         dispatch(getStoreAction(LOGOUT_USER));
 
-        window.location.href = "./";
+        history.push ('/login');
 
     }
     
