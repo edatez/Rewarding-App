@@ -21,7 +21,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use( "/api", require("./routes/authController") );
-app.use( "/api/ring", require("./routes/ringController") );
+app.use( "/api/activity", require("./routes/activityController") );
+app.use( "/api/reward", require("./routes/rewardController") );
 
 // Send every request to the React app
 // Define any API routes before this runs

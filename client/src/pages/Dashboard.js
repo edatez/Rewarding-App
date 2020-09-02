@@ -16,6 +16,15 @@ function Dashboard () {
             
         <Container>  
             <Heading>Dashboard</Heading>
+
+            <Container style={{ marginBottom: 40 }}>
+                <Heading subtitle size={6}>
+                    Current balance = {50}
+                </Heading>
+                <Heading subtitle size={6}>
+                    Progress for = {"reward list"}
+                </Heading>
+            </Container>
             <div style={{ width: 250 }}>
                 <CircularProgressbar 
                     value={percentage} 
@@ -50,13 +59,13 @@ function Dashboard () {
             <Container style={{ marginTop: 40 }}>
                 <Field>
                     <Control>
-                        <Button className="is-success">Add Activities</Button>
+                        <Button className="is-link is-light"><a href="/add-points">Add Points</a></Button>
                     </Control>
                 </Field>
 
                 <Field>
                     <Control>
-                        <Button className="is-success">Redeem Rewards</Button>
+                        <Button className="is-link is-light"><a href="/redeem-rewards">Redeem Rewards</a></Button>
                     </Control>
                 </Field>
             </Container>
@@ -68,6 +77,11 @@ function Dashboard () {
 }
 
 export default Dashboard;
+
+// Link to current point balance
+// Link to reward list as dropdown
+// Percentage = current balance / points for selected reward
+// Icon for reward in the middle of ring
 
 
 

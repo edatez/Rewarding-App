@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const ActivitySchema = new Schema({
-  activity: {
+ activity: {
     type: String,
     required: true
   },
   points: {
-    type: String,
+    type: Number,
     required: true
   }
 });
