@@ -5,6 +5,13 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -19,7 +26,6 @@ require("./config/passport")(passport);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
 app.use( "/api", require("./routes/authController") );
 app.use( "/api/activity", require("./routes/activityController") );
 app.use( "/api/reward", require("./routes/rewardController") );
