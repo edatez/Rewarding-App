@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar} from 'react-bulma-components';
 import img from "../../logo/logo_1.png"
+
 import "./style.sass"
 
 function RewardNavbar() {
@@ -10,17 +11,17 @@ function RewardNavbar() {
 
     >
       <Navbar.Brand>
-        <Navbar.Item renderAs="a" href="../../pages/Dashboard.js">
-          <img src={img} alt="EarnIt Logo"  />
+        <Navbar.Item renderAs="a" href="/Dashboard">
+          <img src={img} alt="EarnIt Logo"/>
         </Navbar.Item>     
       </Navbar.Brand> 
 
         <Navbar.Container>
-          <Navbar.Item href="#">
-            <Navbar.Item href="../../pages/About.js">
+          <Navbar.Item >
+            <Navbar.Item href="/about">
               About 
             </Navbar.Item>
-            <Navbar.Item href="../../pages/Settings.js">
+            <Navbar.Item href="/settings">
               Settings 
             </Navbar.Item>
           </Navbar.Item>
