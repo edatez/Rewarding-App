@@ -23,8 +23,9 @@ function App() {
 
     return (
           <div className="App">
-          <Navbar></Navbar>
+          
             <Router>
+            <Navbar></Navbar>
               <div>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
@@ -36,6 +37,7 @@ function App() {
                 <Route exact path="/redeem-rewards" component={RedeemRewards} />                
                 <Route exact path="/about" component={About} />
                 <Route exact path="/settings" component={Settings} />
+
               </div>
             </Router>
 
