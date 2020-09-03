@@ -1,47 +1,42 @@
 import React from "react";
 import { Columns, Navbar} from 'react-bulma-components';
-import img from "../../logo/logo_1.png"
+import img from "../../logo/earnit_masked.png";
 
-import "./style.sass"
+import "./style.sass";
+import { useLogout } from "../../utils/auth";
 
 function RewardNavbar() {
 
+  const logout = useLogout();
+
   return (
     <Columns className="is-mobile">
-      <Columns.Column className="is-half is-offset-one-quarter is-centered">
-        <Navbar>
+      <Columns.Column> 
+        <Navbar className="navbar">
+            <Navbar.Brand>
+              <Navbar.Item className="img" renderAs="a" href="/Dashboard">
+                <img style={{ maxHeight: 50 }} src={img} alt="EarnIt Logo"/>
+              </Navbar.Item>     
+            </Navbar.Brand> 
 
-          <Navbar.Brand>
-            <Navbar.Item renderAs="a" href="/Dashboard">
-              <img src={img} alt="EarnIt Logo"/>
-            </Navbar.Item>     
-          </Navbar.Brand> 
-
-          <Navbar.Container position="end">
-
-            <Navbar.Item >
+            <Navbar.Container position="end">
               <Navbar.Item href="/about">
                 About 
               </Navbar.Item>
-            </Navbar.Item> 
-
-            <Navbar.Item >
+          
+              
               <Navbar.Item href="/settings">
                 Settings 
               </Navbar.Item>
-            </Navbar.Item>
-
-            <Navbar.Item >
-              <Navbar.Item href="#">
-                Log Out
+              <Navbar.Item onClick={logout} >
+                    Log Out
               </Navbar.Item>
-            </Navbar.Item>
-            
-          </Navbar.Container>         
-        
+                  
+            </Navbar.Container>         
+              
         </Navbar>
         <hr></hr>
-      </Columns.Column>  
+      </Columns.Column>
     </Columns>
   )
 };

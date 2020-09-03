@@ -56,7 +56,7 @@ function Dashboard () {
                 />     
             </div>  
 
-            <Container style={{ marginTop: 40 }}>
+            <Container style={{ marginTop: 40, marginBottom: 50 }}>
                 <Field>
                     <Control>
                         <Button className="is-link is-light"><a href="/add-points">Add Points</a></Button>
