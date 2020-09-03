@@ -11,7 +11,7 @@ function RedeemRewards () {
         <Container>  
             <Heading>Redeem Rewards</Heading>
 
-            <Heading subtitle size={5}>Current Balance: {100}</Heading>
+            <Heading subtitle size={5}>Current Balance: {50}</Heading>
 
             <Container style={{ marginBottom: 40 }}>
                 <Heading subtitle size={4}>
