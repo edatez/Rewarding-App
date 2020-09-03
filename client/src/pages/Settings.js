@@ -7,8 +7,8 @@ function Settings() {
 
      <Content className="has-text-centered"> 
       <p>
-     test
-        <a href="https://www.npmjs.com/package/@storybook/addon-knobs">Start Your Motivation!</a>. .
+     
+        <a href="/login">Start Your Motivation!</a>. .
       </p>
  </Content> 
 
