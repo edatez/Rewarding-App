@@ -3,11 +3,12 @@ import { Columns, Navbar} from 'react-bulma-components';
 import img from "../../logo/earnit_masked.png";
 
 import "./style.sass";
-import { useLogout } from "../../utils/auth";
+import { useLogout, useIsAuthenticated } from "../../utils/auth";
 
 function RewardNavbar() {
 
   const logout = useLogout();
+  const isAuthorized = useIsAuthenticated ();
 
   return (
     <Columns className="is-mobile">
@@ -28,10 +29,21 @@ function RewardNavbar() {
               <Navbar.Item href="/settings">
                 Settings 
               </Navbar.Item>
-              <Navbar.Item onClick={logout} >
-                    Log Out
-              </Navbar.Item>
-                  
+              {
+                isAuthorized
+                  ? (
+                    <Navbar.Item onClick={logout} >
+                      Logout
+                   </Navbar.Item>
+                  )
+
+                  : (
+                    <Navbar.Item href="/login" >
+                  Login
+                  </Navbar.Item>
+                  )
+              
+              }   
             </Navbar.Container>         
               
         </Navbar>

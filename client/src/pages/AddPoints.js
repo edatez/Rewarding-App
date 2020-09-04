@@ -17,12 +17,13 @@ function AddPoints () {
                     <Heading subtitle size={5}>Current Balance: {50}</Heading>
 
                     <Container style={{ marginBottom: 40 }}>
-                        <Heading subtitle size={5} className="heading2">
+                        {/* <Heading subtitle size={5} className="heading2">
                             Select Activity to Add
-                        </Heading>               
-                            <Table className="is-narrow is-hoverable is-bordered">
+                        </Heading>                */}
+                            <Table className="is-narrow is-hoverable">
                                 <thead>
                                     <tr>                        
+                                        <th></th>
                                         <th>Activity</th>                        
                                         <th>Point</th>
                                         <th>Select</th>                                
@@ -30,7 +31,8 @@ function AddPoints () {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th><img style={{ width: 40 }} src="https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-05-128.png"></img>Reading</th>                                
+                                        <td><img style={{ width: 40 }} src="https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-05-128.png"></img></td>
+                                        <td>Reading</td>                                
                                         <td>20</td>
                                         <td>X</td>                                
                                     </tr>
