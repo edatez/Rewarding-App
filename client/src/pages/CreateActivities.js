@@ -1,6 +1,6 @@
 import React, { useState, useEffect  } from "react";
-import { Container, Form, Button, Heading, Table } from 'react-bulma-components';
-import 'react-bulma-components/dist/react-bulma-components.min.css';
+import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
+import "./style.sass";
 import axios from "axios";
 
 function CreateActivities () {
@@ -49,68 +49,72 @@ function CreateActivities () {
        
     return (
             
-        <Container>  
-            <Heading>Create Activities</Heading>
+        <Container className="is-mobile">
+            <Container className="is-centered">
+                <Columns.Column className="is-narrow has-text-centered ">  
+                    <Heading className="heading1">Create Activities</Heading>
 
             <Container style={{ marginBottom: 40 }}>
-                <Heading subtitle size={4}>
+                {/* <Heading subtitle size={4}>
                     Current Activity List
-                </Heading>               
+                </Heading>                */}
                     <Table className="is-narrow is-hoverable is-bordered">
                         <thead>
                             <tr>                        
                                 <th>Activity</th>                        
                                 <th>Point</th>
                                 <th>Delete</th>
-                                <th>Show/Hide</th>
+                                {/* <th>Show/Hide</th> */}
                             </tr>
                         </thead>
                         <tbody>
                             {activities.map(activity => (
                             <tr key={activity.activity}>
-                                <th>{activity.activity}</th>                                
+                                <td>{activity.activity}</td>                                
                                 <td>{activity.points}</td>
-                                <td><Button onClick={()=>handleDelete(activity.activity)}>Delete</Button></td>
-                                <td>X</td>
+                                <td><Button className="is-rounded" onClick={()=>handleDelete(activity.activity)}>Delete</Button></td>
+                                {/* <td>X</td> */}
                             </tr>
                             ))}
                         </tbody>
 
-                    </Table>
-                
-            </Container>
-            
-            <Container>
-                <Heading subtitle size={4}>
-                    Add New Activity
-                </Heading>
+                            </Table>
+                        
+                    </Container>
+                    
+                    <Container>
+                        <Heading subtitle size={5} className="heading2">
+                            Add New Activity
+                        </Heading>                
 
-                <form>
-                    <Field>                
-                        <Control>                    
-                            <input className="input" type="text" name="activity" onChange={handleInputChange} placeholder="Enter Activity"/>                                                
-                        </Control> 
-                        <Control>                    
-                            <input className="input" type="text" name="points" onChange={handleInputChange} placeholder="Enter point for Activity"/>                                                
-                        </Control>               
-                    </Field>
-                </form> 
-                
-            </Container>
+                        <form>
+                            <Field>                
+                                <Control>                    
+                                    <input className="input" type="text" name="activity" onChange={handleInputChange} placeholder="Enter Activity"/>                                                
+                                </Control> 
+                                <Control>                    
+                                    <input className="input" type="text" name="points" onChange={handleInputChange} placeholder="Enter point for Activity"/>                                                
+                                </Control>               
+                            </Field>
+                        </form> 
+                    
+                    </Container>
 
-            <Container style={{ marginTop: 40 }}>
-                <Field>
-                    <Control>
-                        <Button onClick={handleFormSubmit} className="is-success">Add Activities</Button>
-                    </Control>
-                </Field> 
-                <Field>
-                    <Control>
-                        <Button className="is-link is-light"><a href="/add-points">Back to Add Points</a></Button>
-                    </Control>
-                </Field>               
-            </Container>
+                    <Container style={{ marginTop: 40 }}>
+                        <Field>
+                            
+                                <Button className="is-primary is-rounded" onClick={handleFormSubmit}>Add Activities</Button>
+                            
+                        </Field> 
+                        <Field>
+                            
+                                <Button className="is-primary is-rounded"><a className="has-text-white" href="/add-points">Back to Add Points</a></Button>
+                            
+                        </Field>               
+                    </Container>
 
+                </Columns.Column>
+            </Container>
         </Container>
             
     )

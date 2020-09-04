@@ -1,6 +1,6 @@
 import React, { useState, useEffect  } from "react";
-import { Container, Form, Button, Heading, Table } from 'react-bulma-components';
-import 'react-bulma-components/dist/react-bulma-components.min.css';
+import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
+import "./style.sass";
 import axios from "axios";
 
 function CreateRewards () {
@@ -50,67 +50,70 @@ function CreateRewards () {
        
     return (
             
-        <Container>  
-            <Heading>Create Rewards</Heading>
+        <Container className="is-mobile">
+            <Container className="is-centered">
+                <Columns.Column className="is-narrow has-text-centered ">  
+                    <Heading className="heading1">Create Rewards</Heading>
 
-            <Container style={{ marginBottom: 40 }}>
-                <Heading subtitle size={4}>
-                    Current Reward List
-                </Heading>               
-                    <Table className="is-narrow is-hoverable is-bordered">
-                        <thead> 
-                            <tr>                        
-                                <th>Reward</th>                        
-                                <th>Point</th>
-                                <th>Delete</th>
-                                <th>Show/Hide</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {rewards.map(reward => (
-                            <tr key={reward.reward}>
-                                <th>{reward.reward}</th>                                
-                                <td>{reward.points}</td>
-                                <td><Button onClick={()=>handleDelete(reward.reward)}>Delete</Button></td>
-                                <td>X</td>
-                            </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                
-            </Container>
-            
-            <Container>
-                <Heading subtitle size={4}>
-                    Add New Reward
-                </Heading>
+                    <Container style={{ marginBottom: 40 }}>
+                        {/* <Heading subtitle size={4}>
+                            Current Reward List
+                        </Heading>                */}
+                            <Table className="is-narrow is-hoverable is-bordered">
+                                <thead> 
+                                    <tr>                        
+                                        <th>Reward</th>                        
+                                        <th>Point</th>
+                                        <th>Delete</th>
+                                        <th>Show/Hide</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {rewards.map(reward => (
+                                    <tr key={reward.reward}>
+                                        <th>{reward.reward}</th>                                
+                                        <td>{reward.points}</td>
+                                        <td><Button onClick={()=>handleDelete(reward.reward)}>Delete</Button></td>
+                                        <td>X</td>
+                                    </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
+                        
+                    </Container>
+                    
+                    <Container>
+                        <Heading subtitle size={5} className="heading2">
+                            Add New Reward
+                        </Heading>
 
-                <form>
-                    <Field>                
-                        <Control>                    
-                            <input className="input" type="text" name="reward" onChange={handleInputChange} placeholder="Enter Reward"/>                                                
-                        </Control> 
-                        <Control>                    
-                            <input className="input" type="text" name="points" onChange={handleInputChange} placeholder="Enter Point for Reward"/>                                                
-                        </Control>               
-                    </Field>
-                </form> 
-                
-            </Container>
+                        <form>
+                            <Field>                
+                                <Control>                    
+                                    <input className="input" type="text" name="reward" onChange={handleInputChange} placeholder="Enter Reward"/>                                                
+                                </Control> 
+                                <Control>                    
+                                    <input className="input" type="text" name="points" onChange={handleInputChange} placeholder="Enter Point for Reward"/>                                                
+                                </Control>               
+                            </Field>
+                        </form> 
+                        
+                    </Container>
 
-            <Container style={{ marginTop: 40 }}>
-                <Field>
-                    <Control>
-                        <Button onClick={handleFormSubmit} className="is-success">Add Reward</Button>
-                    </Control>
-                </Field>
-                <Field>
-                    <Control>
-                        <Button className="is-link is-light"><a href="/redeem-rewards">Back to Redeem Rewards</a></Button>
-                    </Control>
-                </Field>                 
-            </Container>
-
+                    <Container style={{ marginTop: 40 }}>
+                        <Field>
+                            
+                                <Button className="is-primary is-rounded" onClick={handleFormSubmit}>Add Reward</Button>
+                            
+                        </Field>
+                        <Field>
+                            
+                                <Button className="is-primary is-rounded" ><a className="has-text-white" href="/redeem-rewards">Back to Redeem Rewards</a></Button>
+                            
+                        </Field>                 
+                    </Container>    
+                </Columns.Column>
+            </Container>    
         </Container>
             
     )

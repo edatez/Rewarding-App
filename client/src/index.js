@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "bulma/bulma.sass";
-import "./index.css";
+
+import "./style.sass";
+// import "./index.css";
 import App from "./App";
 
 // import registerServiceWorker from "./registerServiceWorker";
