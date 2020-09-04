@@ -29,9 +29,9 @@ router.post("/", passport.authenticate('jwt', { session: false }), (req, res) =>
 });
 
 
-router.delete("/", passport.authenticate('jwt', { session: false }), (req, res) => {
+router.delete("/:activity", passport.authenticate('jwt', { session: false }), (req, res) => {
   console.log("Delete Activity");
-  Activity.deleteOne({user: req.user._id, activity: req.body.activity}).then(() => {
+  Activity.deleteOne({user: req.user._id, activity: req.params.activity}).then(() => {
     res.end();
   });
 });
