@@ -1,9 +1,50 @@
-import React from "react";
+import React, { useState, useEffect  } from "react";
 import { Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
+import axios from "axios";
 
 function CreateActivities () {
+    const [activities, setActivities] = useState([])
+    const [formObject, setFormObject] = useState({})
 
+    useEffect(() => {
+        loadActivities()
+      }, [])
+
+    const api = "http://localhost:3001";
+    function loadActivities() {
+        (new Promise(r => setTimeout(r, 1000))).then( ()=> {
+            axios.get(api + "/api/activity")
+            .then(res => 
+                setActivities(res.data)
+            )
+            .catch(err => console.log(err))
+        });
+    };
+
+    var handleInputChange = event => {
+        const { name, value } = event.target;
+        setFormObject({...formObject, [name]: value})
+      };
+
+    var handleFormSubmit = event => {
+        // Preventing the default behavior of the form submit (which is to refresh the page)
+        event.preventDefault();
+        axios.post(api + "/api/activity", {
+            activity: formObject.activity,
+            points: formObject.points
+          })
+        .then(res => {
+            loadActivities();
+        })
+        .catch(err => console.log(err));
+      };
+    
+    var handleDelete = (name) => {
+        axios.delete(api + "/api/activity/" + name)
+        .then(res => loadActivities())
+        .catch(err => console.log(err));
+    } 
     const { Input, Field, Control, Label } = Form;
        
     return (
@@ -20,17 +61,19 @@ function CreateActivities () {
                             <tr>                        
                                 <th>Activity</th>                        
                                 <th>Point</th>
-                                <th>Show/Hide</th>
                                 <th>Delete</th>
+                                <th>Show/Hide</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>Reading</th>                                
-                                <td>20</td>
+                            {activities.map(activity => (
+                            <tr key={activity.activity}>
+                                <th>{activity.activity}</th>                                
+                                <td>{activity.points}</td>
+                                <td><Button onClick={()=>handleDelete(activity.activity)}>Delete</Button></td>
                                 <td>X</td>
-                                <td></td>
                             </tr>
+                            ))}
                         </tbody>
 
                     </Table>
@@ -42,13 +85,13 @@ function CreateActivities () {
                     Add New Activity
                 </Heading>
 
-                <form onSubmit>
+                <form>
                     <Field>                
                         <Control>                    
-                            <input className="input" type="text" name="Activities" placeholder="Enter Activity"/>                                                
+                            <input className="input" type="text" name="activity" onChange={handleInputChange} placeholder="Enter Activity"/>                                                
                         </Control> 
                         <Control>                    
-                            <input className="input" type="text" name="point" placeholder="Enter point for Activity"/>                                                
+                            <input className="input" type="text" name="points" onChange={handleInputChange} placeholder="Enter point for Activity"/>                                                
                         </Control>               
                     </Field>
                 </form> 
@@ -58,7 +101,7 @@ function CreateActivities () {
             <Container style={{ marginTop: 40 }}>
                 <Field>
                     <Control>
-                        <Button className="is-success">Add Activities</Button>
+                        <Button onClick={handleFormSubmit} className="is-success">Add Activities</Button>
                     </Control>
                 </Field> 
                 <Field>

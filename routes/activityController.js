@@ -7,6 +7,7 @@ const passport = require("passport");
 router.get("/", passport.authenticate('jwt', { session: false }), (req, res) => {
   console.log("Read user Activity");
   Activity.find({ user: req.user._id}).then(results => {
+    console.log(results);
     if(results === null) {
       results = [];
     }
