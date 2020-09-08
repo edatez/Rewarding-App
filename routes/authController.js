@@ -17,33 +17,31 @@ router.post("/authenticated", passport.authenticate('jwt', { session: false }), 
 
 });
 
-router.post("/register", (req, res) => {
+router.post("/register", (req, res)=>{
+  console.log("hit register route");
+  
+  const {errors, isValid} = validateRegisterInput(req.body);
 
-  // Form validation
-  const { errors, isValid } = validateRegisterInput(req.body);
-
-  // Check validation
-  if (!isValid) {
+  if( !isValid) {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ email: req.body.email }).then(user => {
+  User.findOne({ email: req.body.email}).then(user =>{
 
-    if (user) {
+    if(user){
+      
+      return res.status(400).json({ email: "Email already registered"});
 
-      return res.status(400).json({ email: "Email already exists" });
-
-    } else {
+    }else{
 
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password
       });
-      
-      // Hash password before saving in database
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
+
+      bcrypt.genSalt(10, (err, salt)=>{
+        bcrypt.hash(newUser.password, salt, (err, hash)=>{
           if (err) throw err;
           newUser.password = hash;
           newUser
@@ -52,12 +50,9 @@ router.post("/register", (req, res) => {
             .catch(err => console.log(err));
         });
       });
-
-    } 
-
+    }
   });
-
-});
+})
 
 router.post("/login", (req, res) => {
 
