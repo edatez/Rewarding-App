@@ -15,12 +15,30 @@ function RewardNavbar() {
       <Columns.Column> 
         <Navbar className="navbar">
             <Navbar.Brand>
-              <Navbar.Item className="img" renderAs="a" href="/Dashboard">
-                <img style={{ maxHeight: 50 }} src={img} alt="EarnIt Logo"/>
-              </Navbar.Item>     
+              {
+                isAuthorized
+                  ? (
+                    <Navbar.Item className="img" renderAs="a" href="/Dashboard">
+                      <img style={{ maxHeight: 50 }} src={img} alt="EarnIt Logo"/>
+                    </Navbar.Item>
+                  )
+
+                  : (
+                    <Navbar.Item className="img" renderAs="a" href="/">
+                      <img style={{ maxHeight: 50 }} src={img} alt="EarnIt Logo"/>
+                    </Navbar.Item>
+                  )
+              
+              }    
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>          
             </Navbar.Brand> 
 
             <Navbar.Container position="end">
+              
               <Navbar.Item href="/about">
                 About 
               </Navbar.Item>
