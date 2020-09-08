@@ -1,49 +1,47 @@
 import React from "react";
-import { Content, Media, Image, Level, Icon,  } from "react-bulma-components";
-import img from "../logo/photos.png";
+import { Hero, Heading, Container } from "react-bulma-components";
+// import img from "../logo/back.png";
 
-// import "./style.sass";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function About() {
-  return (
+    return (
+      <Hero  >
+      {/*  backgroundPosition: "bottom-right", backgroundSize: "contain" */}
+        <div className="is-overlay" style={{ backgroundImage: "../logo/photos.png" }}></div>
+        <Hero.Body>
+          <Container style={{textAlign:"center"}}>
+              <Heading  size={1}>
+              For your kids to get excited 
+              </Heading>
 
-<Media renderAs="article">
-  <Media.Item className="img" renderAs="a" position="left">
-    <Image size={50} alt="rainbow" src={img} />
-  </Media.Item>
-  <Media.Item>
-    <Content >
+              <Heading subtitle size={3}>
+              to learn and help you with the chores:
+              </Heading>
 
-      <p >
-
-        <br />
-        Motivate your kids with Positive Reinforcement!
-        <br />
-        Earn Points via activities  
-        <br />
-        Pick the rewards to accomplish '
-        <br />
-        Clean and Easy Interface
-        <br />
-        See the progress with a ring chart
-        <br />
-        Start NOW!
-      </p>
-    </Content>
-    <Level renderAs="level" className="is-mobile">
-      <Level.Side align="left">
-        <Level.Item>
-          <Icon icon="reply" size="small" />
-          <Icon icon="retweet" size="small" />
-          <Icon icon="heart" size="small" />
-        </Level.Item>
-      </Level.Side>
-    </Level>
-  </Media.Item>
-</Media>
-
-  );
+            <p style={{color:"#ffcc00", fontFamily:"sans-serif" }} size={3}>
+                <br />
+                <b >Motivate your kids with Positive Reinforcement!</b>
+                <br />
+                <br />
+               EARN POINTS via activities  
+                <br />
+                <br />
+                PICK THE REWARDS to accomplish 
+                <br />
+                <br />
+               CLEAN AND EASY Interface
+                <br />
+                <br />
+                SEE THE PROGRESS with a ring chart
+                <br />
+                <br />
+                START NOW!
+            </p>
+          </Container>
+        </Hero.Body>
+      </Hero>
+    )
 }
 
 export default About;
