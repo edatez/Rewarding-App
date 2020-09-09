@@ -1,6 +1,6 @@
 import React from "react";
 import { Columns, Navbar} from 'react-bulma-components';
-import img from "../../logo/earnit_masked.png";
+
 
 import "./style.sass";
 import { useLogout, useIsAuthenticated } from "../../utils/auth";
@@ -19,13 +19,13 @@ function RewardNavbar() {
                 isAuthorized
                   ? (
                     <Navbar.Item className="img" renderAs="a" href="/Dashboard">
-                      <img style={{ maxHeight: 50 }} src={img} alt="EarnIt Logo"/>
+                      <img style={{ maxHeight: 50 }} src="/images/earnit_masked.png" alt="EarnIt Logo"/>
                     </Navbar.Item>
                   )
 
                   : (
                     <Navbar.Item className="img" renderAs="a" href="/">
-                      <img style={{ maxHeight: 50 }} src={img} alt="EarnIt Logo"/>
+                      <img style={{ maxHeight: 50 }} src="/images/earnit_masked.png" alt="EarnIt Logo"/>
                     </Navbar.Item>
                   )
               

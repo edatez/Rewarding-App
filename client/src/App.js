@@ -16,6 +16,7 @@ import CreateActivities from "./pages/CreateActivities";
 import CreateRewards from "./pages/CreateRewards";
 import AddPoints from "./pages/AddPoints";
 import RedeemRewards from "./pages/RedeemRewards";
+import "./App.sass";
 
 function App() {
   
@@ -26,7 +27,7 @@ function App() {
           
             <Router>
             <Navbar></Navbar>
-              <div>
+              <div className="mainContent">
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
@@ -37,11 +38,11 @@ function App() {
                 <Route exact path="/redeem-rewards" component={RedeemRewards} />                
                 <Route exact path="/about" component={About} />
                 <Route exact path="/settings" component={Settings} />
-
+                <Footer></Footer>
               </div>
             </Router>
 
-            <Footer></Footer>
+            
             
           </div>
     );
