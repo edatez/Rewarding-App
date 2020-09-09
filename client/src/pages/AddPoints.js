@@ -47,8 +47,7 @@ function AddPoints () {
                                 <th></th>                   
                                 <th>Activity</th>                        
                                 <th>Point</th>
-                                <th>Add Points</th>
-                                {/* <th>Show/Hide</th> */}
+                                <th>Add Points</th>                                
                             </tr>
                         </thead>
                         <tbody>
@@ -57,38 +56,16 @@ function AddPoints () {
                                 <td><img style={{ width: 40 }} src="https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-05-128.png"></img></td>
                                 <td>{activity.activity}</td>                                
                                 <td>{activity.points}</td>
-                                <td><Button className="is-rounded" onClick={event => addChildrenPoints(event, activity.activity)}>Add Points</Button></td>
-                                {/* <td>X</td> */}
+                                <td><Button className="is-primary is-rounded" onClick={event => addChildrenPoints(event, activity.activity)}>Add Points</Button></td>                                
                             </tr>
                             ))}
                         </tbody>
 
                             </Table>
                         
-                    </Container>
+                    </Container>                    
                     
-                    {/* <Container>
-                        <Heading subtitle size={4}>
-                            Add New Activity
-                        </Heading>
-
-                        <form onSubmit>
-                            <Field>                
-                                <Control>                    
-                                    <input className="input" type="text" name="Activities" placeholder="Enter Activity"/>                                                
-                                </Control> 
-                                <Control>                    
-                                    <input className="input" type="text" name="point" placeholder="Enter point for Activity"/>                                                
-                                </Control>               
-                            </Field>
-                        </form> 
-                        
-                    </Container> */}
-
-                    <Container style={{ marginTop: 40 }}>
-                        <Field>                            
-                            <Button className="is-primary is-rounded" >Add Points</Button>                            
-                        </Field> 
+                    <Container style={{ marginTop: 40 }}>                         
                         <Field>                            
                             <Button className="is-primary is-rounded" ><a className="has-text-white" href="/create-activities">Create Activities</a></Button>                            
                         </Field>               

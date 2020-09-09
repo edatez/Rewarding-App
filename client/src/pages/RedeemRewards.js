@@ -56,7 +56,7 @@ function RedeemRewards () {
                                         <td><img style={{ width: 40, marginTop: -5 }} src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/bike-128.png"></img></td> 
                                         <td>{reward.reward}</td>                              
                                         <td>{reward.points}</td>
-                                        <td><Button className="is-rounded" onClick={event => redeemChildrenRewards(event, reward.reward)}>Redeem Reward</Button></td>
+                                        <td><Button className="is-primary is-rounded" onClick={event => redeemChildrenRewards(event, reward.reward)}>Redeem</Button></td>
                                     </tr>
                                     ))}
                                     <tr>
@@ -65,32 +65,9 @@ function RedeemRewards () {
 
                             </Table>
                         
-                    </Container>
+                    </Container>                  
                     
-                    {/* <Container>
-                        <Heading subtitle size={4}>
-                            Add New Activity
-                        </Heading>
-
-                        <form onSubmit>
-                            <Field>                
-                                <Control>                    
-                                    <input className="input" type="text" name="Activities" placeholder="Enter Activity"/>                                                
-                                </Control> 
-                                <Control>                    
-                                    <input className="input" type="text" name="point" placeholder="Enter point for Activity"/>                                                
-                                </Control>               
-                            </Field>
-                        </form> 
-                        
-                    </Container> */}
-
-                    <Container style={{ marginTop: 40 }}>
-                        <Field>
-                            
-                                <Button className="is-primary is-rounded">Redeem Rewards</Button>
-                            
-                        </Field> 
+                    <Container style={{ marginTop: 40 }}>                        
                         <Field>
                             
                                 <Button className="is-primary is-rounded"><a className="has-text-white" href="/create-rewards">Create Rewards</a></Button>
