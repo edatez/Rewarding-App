@@ -1,6 +1,7 @@
-import React from "react";
-import { Container, Form, Button, Heading } from 'react-bulma-components';
+import React, { useState, useEffect  } from "react";
+import { Container, Dropdown, Form, Button, Heading } from 'react-bulma-components';
 import "./style.sass";
+import axios from "axios";
 
 // Import react-circular-progressbar module and styles
 import { CircularProgressbar, buildStyles} from "react-circular-progressbar";
@@ -11,6 +12,28 @@ function Dashboard () {
     const percentage = 66;  
     
     const { Input, Field, Control, Label } = Form;
+
+    const [rewards, setRewards] = useState([])
+
+    const api = "http://localhost:3001";
+
+    useEffect(() => {
+        loadRewards()
+      }, [])
+
+    function loadRewards() {
+        (new Promise(r => setTimeout(r, 1000))).then( ()=> {
+            axios.get(api + "/api/reward")
+            .then(res => 
+                setRewards(res.data)
+            )
+            .catch(err => console.log(err))
+        });
+    };
+
+    function loadProgress() {
+
+    }
     
     return (
             
@@ -24,7 +47,14 @@ function Dashboard () {
                             Current balance = {50}
                         </Heading>
                         <Heading subtitle size={6}>
-                            Progress for = {"reward list"}
+                            Progress for 
+                            <Dropdown className="ml-3">                                                         
+                                {rewards.map(reward => (                                
+                                    <Dropdown.Item value="item" onClick={loadProgress(reward.reward)} key={reward.reward}>                                    
+                                        {reward.reward}                          
+                                    </Dropdown.Item>
+                                ))}                                                                                                                            
+                            </Dropdown>
                         </Heading>
                     </Container>
 
