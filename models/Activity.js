@@ -15,6 +15,10 @@ const ActivitySchema = new Schema({
   points: {
     type: Number,
     required: true
+  },
+  completed:{
+    type: Boolean,
+    required: true
   }
 });
 
