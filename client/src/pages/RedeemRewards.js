@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState, useEffect  } from "react";
 import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
+import axios from "axios";
 
 function RedeemRewards () {
+    const [rewards, setRewards] = useState([])
 
+    useEffect(() => {
+        loadRewards()
+      }, [])
+
+    const api = "http://localhost:3001";
+    function loadRewards() {
+        (new Promise(r => setTimeout(r, 1000))).then( ()=> {
+            axios.get(api + "/api/reward")
+            .then(res => 
+                setRewards(res.data)
+            )
+            .catch(err => console.log(err))
+        });
+    };
+
+    var redeemChildrenRewards = (event, name) => {
+        event.preventDefault();
+        alert("Redeem '"+ name + "' reward")
+    } 
     const { Input, Field, Control, Label } = Form;
        
     return (
@@ -22,18 +43,24 @@ function RedeemRewards () {
                         </Heading>               
                             <Table className="is-narrow is-hoverable is-bordered">
                                 <thead>
-                                    <tr>                        
+                                    <tr>      
+                                        <th></th>                          
                                         <th>Reward</th>                        
                                         <th>Point</th>
-                                        <th>Select</th>                                
+                                        <th>Redeem</th>                                
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th><img style={{ width: 40, marginTop: -5 }} src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/bike-128.png"></img>Bike</th>                                
-                                        <td>200</td>
-                                        <td>X</td>                                
+                                    {rewards.map(reward => (
+                                    <tr key={reward.reward}>                                        
+                                        <td><img style={{ width: 40, marginTop: -5 }} src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/bike-128.png"></img></td> 
+                                        <td>{reward.reward}</td>                              
+                                        <td>{reward.points}</td>
+                                        <td><Button className="is-rounded" onClick={event => redeemChildrenRewards(event, reward.reward)}>Redeem Reward</Button></td>
                                     </tr>
+                                    ))}
+                                    <tr>
+                                        </tr>
                                 </tbody>
 
                             </Table>

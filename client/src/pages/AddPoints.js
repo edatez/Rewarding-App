@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState, useEffect  } from "react";
 import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
+import axios from "axios";
 
 function AddPoints () {
+    const [activities, setActivities] = useState([])
 
+    useEffect(() => {
+        loadActivities()
+      }, [])
+
+    const api = "http://localhost:3001";
+    function loadActivities() {
+        (new Promise(r => setTimeout(r, 1000))).then( ()=> {
+            axios.get(api + "/api/activity")
+            .then(res => 
+                setActivities(res.data)
+            )
+            .catch(err => console.log(err))
+        });
+    };
+
+    var addChildrenPoints = (event, name) => {
+        event.preventDefault();
+        alert("Add '"+ name + "' activity")
+    } 
     const { Input, Field, Control, Label } = Form;
        
     return (
@@ -17,26 +38,30 @@ function AddPoints () {
                     <Heading subtitle size={5}>Current Balance: {50}</Heading>
 
                     <Container style={{ marginBottom: 40 }}>
-                        {/* <Heading subtitle size={5} className="heading2">
-                            Select Activity to Add
-                        </Heading>                */}
-                            <Table className="is-narrow is-hoverable">
-                                <thead>
-                                    <tr>                        
-                                        <th></th>
-                                        <th>Activity</th>                        
-                                        <th>Point</th>
-                                        <th>Select</th>                                
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><img style={{ width: 40 }} src="https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-05-128.png"></img></td>
-                                        <td>Reading</td>                                
-                                        <td>20</td>
-                                        <td>X</td>                                
-                                    </tr>
-                                </tbody>
+                         {/* <Heading subtitle size={4}>
+                    Current Activity List
+                </Heading>                */}
+                    <Table className="is-narrow is-hoverable is-bordered">
+                        <thead>
+                            <tr>
+                                <th></th>                   
+                                <th>Activity</th>                        
+                                <th>Point</th>
+                                <th>Add Points</th>
+                                {/* <th>Show/Hide</th> */}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {activities.map(activity => (
+                            <tr key={activity.activity}>
+                                <td><img style={{ width: 40 }} src="https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-05-128.png"></img></td>
+                                <td>{activity.activity}</td>                                
+                                <td>{activity.points}</td>
+                                <td><Button className="is-rounded" onClick={event => addChildrenPoints(event, activity.activity)}>Add Points</Button></td>
+                                {/* <td>X</td> */}
+                            </tr>
+                            ))}
+                        </tbody>
 
                             </Table>
                         
