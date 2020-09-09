@@ -1,11 +1,6 @@
 import React from "react";
 import { Heading } from "react-bulma-components";
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
-
-library.add( faGlobe );
-
 function About() {
     return (
 
