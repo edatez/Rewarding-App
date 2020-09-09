@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Hero, Button, Heading, Form } from 'react-bulma-components';
-import 'react-bulma-components/dist/react-bulma-components.min.css';
+import "./style.sass";
 
 import {useIsAuthenticated, useLogout} from "../utils/auth";
 
@@ -11,28 +11,27 @@ function Home() {
     const { Input, Field, Control, Label } = Form;
     
     return (
-        <div>                
-        
-            <Hero>    
-                <Hero.Body>
-                    <Container>
-                        <Heading>Rewarding App</Heading>
+        <Container className="is-mobile">        
+            <Container className="is-centered">    
+                <Container className="is-narrow has-text-centered">
+                    
+                        {/* <Heading>Rewarding App</Heading> */}
                         {
                             isAuth
-                                ? <Button onClick={logout}>Logout</Button>
-                                : <Button ><a href="/login">Login</a></Button>
+                                ? <Button className="is-primary is-rounded mb-3" style={{ width: 100 }} onClick={logout}>Logout</Button>
+                                : <Button className="is-primary is-rounded mb-3" style={{ width: 100 }}><a className="has-text-white" href="/login">Login</a></Button>
                         }
 
                         <br />
-                        <Field>
-                            <Control>
-                                <Button ><a href="/register">Register</a></Button>
-                            </Control>
-                        </Field>  
-                    </Container>
-                </Hero.Body>
-            </Hero>
-        </div>   
+                        
+                            <Field>
+                                <Button className="is-primary is-rounded" style={{ width: 100 }}><a className="has-text-white" href="/register">Register</a></Button>
+                            </Field>
+                          
+                    
+                </Container>
+            </Container>
+        </Container>   
     )
 }
 

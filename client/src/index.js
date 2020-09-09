@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "bulma/bulma.sass";
+
+import "./style.sass";
 import "./index.css";
 import App from "./App";
 

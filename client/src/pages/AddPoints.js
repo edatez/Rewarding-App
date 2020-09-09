@@ -1,73 +1,77 @@
-import React from "react";
-import { Container, Form, Button, Heading, Table } from 'react-bulma-components';
-import 'react-bulma-components/dist/react-bulma-components.min.css';
+import React, { useState, useEffect  } from "react";
+import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
+import "./style.sass";
+import axios from "axios";
 
 function AddPoints () {
+    const [activities, setActivities] = useState([])
 
+    useEffect(() => {
+        loadActivities()
+      }, [])
+
+    const api = "http://localhost:3001";
+    function loadActivities() {
+        (new Promise(r => setTimeout(r, 1000))).then( ()=> {
+            axios.get(api + "/api/activity")
+            .then(res => 
+                setActivities(res.data)
+            )
+            .catch(err => console.log(err))
+        });
+    };
+
+    var addChildrenPoints = (event, name) => {
+        event.preventDefault();
+        alert("Add '"+ name + "' activity")
+    } 
     const { Input, Field, Control, Label } = Form;
        
     return (
             
-        <Container>  
-            <Heading>Add Points</Heading>
+        <Container className="is-mobile">
+            <Container className="is-centered">
+                <Columns.Column className="is-narrow has-text-centered ">
 
-            <Heading subtitle size={5}>Current Balance: {50}</Heading>
+                    <Heading className="heading1">Add Points</Heading>
 
-            <Container style={{ marginBottom: 40 }}>
-                <Heading subtitle size={4}>
-                    Select Activity to Add
-                </Heading>               
+                    <Heading subtitle size={5}>Current Balance: {50}</Heading>
+
+                    <Container style={{ marginBottom: 40 }}>
+                         {/* <Heading subtitle size={4}>
+                    Current Activity List
+                </Heading>                */}
                     <Table className="is-narrow is-hoverable is-bordered">
                         <thead>
-                            <tr>                        
+                            <tr>
+                                <th></th>                   
                                 <th>Activity</th>                        
                                 <th>Point</th>
-                                <th>Select</th>                                
+                                <th>Add Points</th>                                
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th><img style={{ width: 40 }} src="https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-05-128.png"></img>Reading</th>                                
-                                <td>20</td>
-                                <td>X</td>                                
+                            {activities.map(activity => (
+                            <tr key={activity.activity}>
+                                <td><img style={{ width: 40 }} src="https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-05-128.png"></img></td>
+                                <td>{activity.activity}</td>                                
+                                <td>{activity.points}</td>
+                                <td><Button className="is-primary is-rounded" onClick={event => addChildrenPoints(event, activity.activity)}>Add Points</Button></td>                                
                             </tr>
+                            ))}
                         </tbody>
 
-                    </Table>
-                
+                            </Table>
+                        
+                    </Container>                    
+                    
+                    <Container style={{ marginTop: 40 }}>                         
+                        <Field>                            
+                            <Button className="is-primary is-rounded" ><a className="has-text-white" href="/create-activities">Create Activities</a></Button>                            
+                        </Field>               
+                    </Container>
+                </Columns.Column>
             </Container>
-            
-            {/* <Container>
-                <Heading subtitle size={4}>
-                    Add New Activity
-                </Heading>
-
-                <form onSubmit>
-                    <Field>                
-                        <Control>                    
-                            <input className="input" type="text" name="Activities" placeholder="Enter Activity"/>                                                
-                        </Control> 
-                        <Control>                    
-                            <input className="input" type="text" name="point" placeholder="Enter point for Activity"/>                                                
-                        </Control>               
-                    </Field>
-                </form> 
-                
-            </Container> */}
-
-            <Container style={{ marginTop: 40 }}>
-                <Field>
-                    <Control>
-                        <Button className="is-success">Add Points</Button>
-                    </Control>
-                </Field> 
-                <Field>
-                    <Control>
-                        <Button className="is-link is-light"><a href="/create-activities">Create Activities</a></Button>
-                    </Control>
-                </Field>               
-            </Container>
-
         </Container>
             
     )

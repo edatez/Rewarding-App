@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
-import { Container, Form, Button, Heading } from 'react-bulma-components';
-import 'react-bulma-components/dist/react-bulma-components.min.css';
+import { Columns, Container, Form, Button, Heading } from 'react-bulma-components';
+import "./style.sass";
 
 import { useLogin } from "../utils/auth";
 
@@ -35,34 +35,36 @@ function Login() {
 
     return (
         
-        <Container>                    
-            <Heading>Login</Heading>
-            <form onSubmit={handleSubmit}>
-            <Field>
-                <Control className="has-icons-left">                
-                    <input className="input" type="email" name="email" placeholder="email" ref={emailInput} />
-                    <span className="icon is-small is-left">
-                        <i className="fas fa-envelope"></i>
-                    </span>                    
-                </Control>
-            </Field>            
-            <br />
-            <Field>
-                <Control className="has-icons-left">             
-                    <input className="input" type="password" name="password" placeholder="Password" ref={passwordInput} />
-                    <span className="icon is-small is-left">
-                        <i className="fas fa-lock"></i>
-                    </span>                            
-                </Control>
-            </Field>
-            
-            <br />
-            <Field>
-                <Control>
-                    <Button className="is-success">Submit</Button>
-                </Control>
-            </Field>
-            </form>
+        <Container className="is-mobile">
+            <Container className="is-centered">
+                <Columns.Column className="is-narrow has-text-centered "> 
+                    <Heading className="heading1">Login</Heading>
+                    <form onSubmit={handleSubmit}>
+                    <Field>
+                        <Control className="has-icons-left">                
+                            <input className="input" type="email" name="email" placeholder="email" ref={emailInput} />
+                            <span className="icon is-small is-left">
+                                <i className="fas fa-envelope"></i>
+                            </span>                    
+                        </Control>
+                    </Field>            
+                    <br />
+                    <Field>
+                        <Control className="has-icons-left">             
+                            <input className="input" type="password" name="password" placeholder="Password" ref={passwordInput} />
+                            <span className="icon is-small is-left">
+                                <i className="fas fa-lock"></i>
+                            </span>                            
+                        </Control>
+                    </Field>
+                    
+                    <br />
+                    <Field>                        
+                        <Button className="is-primary is-rounded">Submit</Button>                        
+                    </Field>
+                    </form>
+                </Columns.Column> 
+            </Container> 
         </Container>
               
     )

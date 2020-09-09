@@ -1,23 +1,50 @@
 import React from "react";
-import { Content } from "react-bulma-components";
-// import "./style.sass";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Heading } from "react-bulma-components";
 
 function About() {
-  return (
+    return (
 
-     <Content className="has-text-centered"> 
-      <p style={{fontFamily: "Arial", textAlign:"left", padding: "100px", fontSize:"12px"}} >
-        This is an application for positive reinforcement of good behaviors and
-        motivating your kids! Its interface is clean and easy as well as kid
-        friendly so you can add or remove activities and pick the rewards to
-        accomplish. You can see the progress of your child with a visual ring
-        chart.
-        <a style={{fontSize:"20px", fontWeight:"bold"}} href="./login"> Start Your Motivation!</a>
-      </p>
- </Content> 
+      <div class="columns">
+      <div class="column">
+   
+      <img src= "/images/photos.png" /> 
+      </div>
+      <div class="column">
+    
+              <Heading  size={1}>
+              For your kids to get excited 
+              </Heading>
 
-  );
+              <Heading subtitle size={3}>
+              to learn and help you with the chores:
+              </Heading>
+
+            <p style={{color:"#ffcc00", fontFamily:"sans-serif" }} size={3}>
+                <br />
+                <b >Motivate your kids with Positive Reinforcement!</b>
+                <br />
+                <br />
+               EARN POINTS via activities  
+                <br />
+                <br />
+                PICK THE REWARDS to accomplish 
+                <br />
+                <br />
+               CLEAN AND EASY Interface
+                <br />
+                <br />
+                SEE THE PROGRESS with a ring chart
+                <br />
+                <br />
+                START NOW!
+            </p>
+        </div>
+
+
+      </div>
+
+
+    )
 }
 
 export default About;
