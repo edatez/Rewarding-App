@@ -1,5 +1,6 @@
 import React from "react";
 import { Columns, Navbar} from 'react-bulma-components';
+import $ from "jquery";
 
 
 import "./style.sass";
@@ -9,6 +10,19 @@ function RewardNavbar() {
 
   const logout = useLogout();
   const isAuthorized = useIsAuthenticated ();
+  
+
+  $(document).ready(function() {
+
+    // Check for click events on the navbar burger icon
+    $(".navbar-burger").click(function() {
+  
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        $(".navbar-burger").toggleClass("is-active");
+        $(".navbar-menu").toggleClass("is-active");
+  
+    });
+  });
 
   return (
     <Columns className="is-mobile">
@@ -30,38 +44,43 @@ function RewardNavbar() {
                   )
               
               }    
-              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-              </a>          
+              <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div> 
+
             </Navbar.Brand> 
 
             <Navbar.Container position="end">
-              
-              <Navbar.Item href="/about">
-                About 
-              </Navbar.Item>
-          
-              
-              <Navbar.Item href="/settings">
-                Settings 
-              </Navbar.Item>
-              {
-                isAuthorized
-                  ? (
-                    <Navbar.Item onClick={logout} >
-                      Logout
-                   </Navbar.Item>
-                  )
 
-                  : (
-                    <Navbar.Item href="/login" >
-                  Login
-                  </Navbar.Item>
-                  )
+              <Navbar className="navbar-menu">
               
-              }   
+                <Navbar.Item href="/about">
+                  About 
+                </Navbar.Item>            
+                
+                <Navbar.Item href="/settings">
+                  Settings 
+                </Navbar.Item>
+
+                {
+                  isAuthorized
+                    ? (
+                      <Navbar.Item onClick={logout} >
+                        Logout
+                    </Navbar.Item>
+                    )
+
+                    : (
+                      <Navbar.Item href="/login" >
+                    Login
+                    </Navbar.Item>
+                    )               
+                } 
+
+              </Navbar>  
+
             </Navbar.Container>         
               
         </Navbar>

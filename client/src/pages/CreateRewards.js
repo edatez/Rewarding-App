@@ -64,8 +64,7 @@ function CreateRewards () {
                                     <tr>                        
                                         <th>Reward</th>                        
                                         <th>Point</th>
-                                        <th>Delete</th>
-                                        <th>Show/Hide</th>
+                                        <th>Delete</th>                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,8 +72,7 @@ function CreateRewards () {
                                     <tr key={reward.reward}>
                                         <th>{reward.reward}</th>                                
                                         <td>{reward.points}</td>
-                                        <td><Button onClick={()=>handleDelete(reward.reward)}>Delete</Button></td>
-                                        <td>X</td>
+                                        <td><Button className="is-primary is-rounded" onClick={()=>handleDelete(reward.reward)}>Delete</Button></td>                                        
                                     </tr>
                                     ))}
                                 </tbody>
