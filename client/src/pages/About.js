@@ -1,16 +1,21 @@
 import React from "react";
-import { Hero, Heading, Container } from "react-bulma-components";
-// import img from "../logo/back.png";
+import { Heading } from "react-bulma-components";
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+
+library.add( faGlobe );
 
 function About() {
     return (
-      <Hero  >
-      {/*  backgroundPosition: "bottom-right", backgroundSize: "contain" */}
-        <div className="is-overlay" style={{ backgroundImage: "../logo/photos.png" }}></div>
-        <Hero.Body>
-          <Container style={{textAlign:"center"}}>
+
+      <div class="columns">
+      <div class="column">
+   
+      <img src= "/images/photos.png" /> 
+      </div>
+      <div class="column">
+    
               <Heading  size={1}>
               For your kids to get excited 
               </Heading>
@@ -38,9 +43,12 @@ function About() {
                 <br />
                 START NOW!
             </p>
-          </Container>
-        </Hero.Body>
-      </Hero>
+        </div>
+
+
+      </div>
+
+
     )
 }
 
