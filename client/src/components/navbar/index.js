@@ -44,7 +44,7 @@ function RewardNavbar() {
                   )
               
               }    
-              <div class="navbar-burger">
+              <div className="navbar-burger">
                 <span></span>
                 <span></span>
                 <span></span>
