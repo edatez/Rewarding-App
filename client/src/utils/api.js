@@ -18,6 +18,12 @@ export default {
 
         return axios.post("/api/authenticated");
 
+    },
+
+    createActivity(data){
+
+        return axios.post("/api/activity/", data);
+
     }
 
 }

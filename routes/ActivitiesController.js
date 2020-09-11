@@ -9,8 +9,8 @@ router.post("/", passport.authenticate('jwt', {session: false}), (req, res)=>{
     User.findByIdAndUpdate(req.user._id,{
         $push:{
             activities:{
-                activity: "activityTest",
-                activityPoints: 100,
+                activity: req.body.activity,
+                activityPoints: req.body.points,
             }
         }
     }, {new: true})

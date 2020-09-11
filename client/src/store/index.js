@@ -2,7 +2,8 @@ import React,{ createContext, useContext, useReducer } from "react";
 
 import {
     LOGIN_USER,
-    LOGOUT_USER
+    LOGOUT_USER,
+    SET_USER
 } from "./actions";
 
 const StoreContext = createContext({
@@ -22,6 +23,10 @@ const reducer = ( state, { type, payload } ) => {
 
             return { ...state, userAuth: undefined };
 
+        case SET_USER:
+
+            return{ ...state, user: payload}
+
         default:
             return state;
     }
@@ -37,7 +42,8 @@ export const getStoreAction = ( type, payload ) => {
 export const StoreProvider = ( { children } ) => {
 
     const [ store, dispatch ] = useReducer( reducer, {
-        userAuth: undefined
+        userAuth: undefined,
+        user: null
     } );
 
     return <Provider value={[store, dispatch]}>{ children }</Provider>
