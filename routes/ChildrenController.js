@@ -12,7 +12,7 @@ router.post("/", passport.authenticate('jwt', { session: false }), (req, res)=>{
     User.findByIdAndUpdate(req.user._id, {
         $push: {
             children:{
-                childName: "test",
+                childName: req.body.childName,
                 pointsEarned: 0,
             }
         }

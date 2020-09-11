@@ -24,6 +24,18 @@ export default {
 
         return axios.post("/api/activity/", data);
 
+    },
+
+    addChildren(data){
+
+        return axios.post("/api/children/", data);
+
+    },
+
+    deleteChildren(data){
+
+        return axios.delete("/api/children/", data);
+
     }
 
 }

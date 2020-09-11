@@ -62,7 +62,7 @@ function CreateActivities () {
                 {/* <Heading subtitle size={4}>
                     Current Activity List
                 </Heading>                */}
-                    <Table className="is-narrow is-hoverable is-bordered">
+                    <Table className="is-narrow is-hoverable">
                         <thead>
                             <tr>                        
                                 <th>Activity</th>                        
@@ -76,11 +76,18 @@ function CreateActivities () {
                             <tr key={activity.activity}>
                                 <td>{activity.activity}</td>                                
                                 <td>{activity.activityPoints}</td>
-                                <td><Button className="is-rounded" onClick={()=>handleDelete(activity.activity)}>Delete</Button></td>
+                                <td><Button className="is-rounded is-danger is-light" onClick={()=>handleDelete(activity.activity)}>Delete</Button></td>
                                 {/* <td>X</td> */}
                             </tr>
                             ))}
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
 
                             </Table>
                         

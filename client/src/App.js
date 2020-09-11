@@ -8,7 +8,6 @@ import Register from "./pages/Register";
 import About from "./pages/About";
 import Settings from "./pages/Settings";
 
-import {useStoreContext} from "./store";
 import Navbar from "./components/navbar"
 import Footer from "./components/footer";
 import Dashboard from "./pages/Dashboard";
@@ -17,6 +16,7 @@ import CreateRewards from "./pages/CreateRewards";
 import AddPoints from "./pages/AddPoints";
 import RedeemRewards from "./pages/RedeemRewards";
 import "./App.sass";
+import AddChildren from "./pages/AddChildren";
 
 function App() {
   
@@ -31,6 +31,7 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
+                <Route exact path="/add-children" component={AddChildren} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/create-activities" component={CreateActivities} />
                 <Route exact path="/create-rewards" component={CreateRewards} />
