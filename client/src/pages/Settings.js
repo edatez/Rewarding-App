@@ -5,6 +5,8 @@ import { Content } from "react-bulma-components";
 function Settings() {
   return (
 
+    
+
      <Content className="has-text-centered"> 
       <p>
      
