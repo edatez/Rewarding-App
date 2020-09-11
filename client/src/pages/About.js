@@ -5,36 +5,37 @@ function About() {
     return (
 
       <div class="columns">
-      <div class="column">
+      <div className="column"  >
    
-      <img src= "/images/photos.png" /> 
+      <img src= "/images/photos.png"  className="img1"/> 
       </div>
-      <div class="column">
+
+        <div className="column">
     
-              <Heading  size={1}>
+              <Heading  size={3}>
               For your kids to get excited 
               </Heading>
 
-              <Heading subtitle size={3}>
+              <Heading subtitle size={4}>
               to learn and help you with the chores:
               </Heading>
 
-            <p style={{color:"#ffcc00", fontFamily:"sans-serif" }} size={3}>
-                <br />
+            <p style={{color:"black", fontSize: "18px", fontFamily:"sans-serif", opacity: "0.7" }} size={3}>
+                
                 <b >Motivate your kids with Positive Reinforcement!</b>
-                <br />
+                
                 <br />
                EARN POINTS via activities  
-                <br />
+               
                 <br />
                 PICK THE REWARDS to accomplish 
-                <br />
+                
                 <br />
                CLEAN AND EASY Interface
-                <br />
+                
                 <br />
                 SEE THE PROGRESS with a ring chart
-                <br />
+                
                 <br />
                 START NOW!
             </p>
