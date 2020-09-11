@@ -32,8 +32,8 @@ if (process.env.NODE_ENV === "production") {
 
 app.use( "/api", require("./routes/authController") );
 // app.use( require("./routes/childController"))
-app.use( "/api/activity", require("./routes/activityController") );
-app.use( "/api/reward", require("./routes/rewardController") );
+app.use( "/api/activity", require("./routes/ActivitiesController") );
+// app.use( "/api/reward", require("./routes/rewardController") );
 app.use( "/api/children", require("./routes/ChildrenController"))
 
 // Send every request to the React app
