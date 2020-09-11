@@ -48,10 +48,20 @@ const UserSchema = new Schema({
     rewards:[rewardsSubSchema]
   })],
 
-  activities:[{
-    type: Schema.Types.ObjectId,
-    ref: "Activity"
-  }]
+  activities:[new mongoose.Schema({
+    activity:{
+      type: String,
+      required: true
+    },
+    activityPoints:{
+      type: Number,
+      required: true
+    },
+    completed:{
+      type: Boolean,
+      default: false
+    }
+  })]
 
 });
 
