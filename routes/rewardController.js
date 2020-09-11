@@ -3,14 +3,21 @@ const express = require("express");
 const router = express.Router();
 const {User} = require("../models");
 const passport = require("passport");
-// Routes
-router.post("/", passport.authenticate('jwt', {session: false}), (req, res)=>{
-  console.log("hit new route");
-  User.create({
-    name: req.user._id,
-    email
+
+router.post("/", passport.authenticate('jwt', { session: false }), (req, res)=>{
+  User.findByIdAndUpdate(req.user._id, {
+
   })
 })
+
+// Routes
+// router.post("/", passport.authenticate('jwt', {session: false}), (req, res)=>{
+//   console.log("hit new route");
+//   User.create({
+//     name: req.user._id,
+//     email
+//   })
+// })
 
 // router.post("/", passport.authenticate('jwt', { session: false }), (req, res) => {
 //   console.log("Create user Reward");
