@@ -34,5 +34,15 @@ router.post("/:childID/rewards", passport.authenticate('jwt', { session: false }
     })
     
 })
+
+router.post("/:rewardID/redeem", passport.authenticate('jwt', {session: false}), (req, res)=>{
+    Reward.findById(req.params.rewardID)
+    .then((reward)=>{
+        reward.redeemed= true
+        reward.save()
+        .then(()=>{res.json(reward)})
+    })
+
+})
   
 module.exports = router;

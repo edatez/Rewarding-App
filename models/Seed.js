@@ -20,11 +20,11 @@ const userSeed = [
                 redeemed: false
             }
         },
-        activies:{
+        activies:[{
             activity: "test",
             activityPoints: 0,
             completed: false
-        }
+        }]
     },
     {
         name: "2seedTest",
@@ -39,11 +39,11 @@ const userSeed = [
                 redeemed: false
             }
         },
-        activies:{
+        activies:[{
             activity: "2test",
             activityPoints: 0,
             completed: false
-        }
+        }]
     }
 ];
 

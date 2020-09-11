@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 
 import api from "./api";
 import { useStoreContext, getStoreAction } from "../store";
-import { LOGIN_USER, LOGOUT_USER } from "../store/actions";
+import { LOGIN_USER, LOGOUT_USER, SET_USER } from "../store/actions";
 import { useHistory } from "react-router-dom";
 
 const setAuthToken = token => {
@@ -77,7 +77,10 @@ export const useAuthTokenStore = () => {
                 // Validate the token with the server
                 api
                     .authenticated()
-                    .then( () => dispatch(getStoreAction( LOGIN_USER, userAuth )) )
+                    .then( (res) => {
+                        dispatch(getStoreAction( LOGIN_USER, userAuth ))
+                        dispatch(getStoreAction( SET_USER, res.data ))
+                    })
                     .catch( invalidate );
 
             }

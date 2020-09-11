@@ -2,25 +2,29 @@ import React, { useState, useEffect  } from "react";
 import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
 import axios from "axios";
+import api from "../utils/api";
+import { useStoreContext } from "../store";
 
 function CreateActivities () {
     const [activities, setActivities] = useState([])
     const [formObject, setFormObject] = useState({})
+    const [state, dispatch]= useStoreContext()
 
-    useEffect(() => {
-        loadActivities()
-      }, [])
+    // useEffect(() => {
+    //     loadActivities()
+    //   }, [])
 
-    const api = "http://localhost:3001";
-    function loadActivities() {
-        (new Promise(r => setTimeout(r, 1000))).then( ()=> {
-            axios.get(api + "/api/activity")
-            .then(res => 
-                setActivities(res.data)
-            )
-            .catch(err => console.log(err))
-        });
-    };
+    // function loadActivities() {
+
+
+    //     (new Promise(r => setTimeout(r, 1000))).then( ()=> {
+    //         axios.get( "/api/activity")
+    //         .then(res => 
+    //             setActivities(res.data)
+    //         )
+    //         .catch(err => console.log(err))
+    //     });
+    // };
 
     var handleInputChange = event => {
         const { name, value } = event.target;
@@ -30,19 +34,19 @@ function CreateActivities () {
     var handleFormSubmit = event => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         event.preventDefault();
-        axios.post(api + "/api/activity", {
+        api.createActivity({
             activity: formObject.activity,
             points: formObject.points
           })
         .then(res => {
-            loadActivities();
+            // loadActivities();
         })
         .catch(err => console.log(err));
       };
     
     var handleDelete = (name) => {
-        axios.delete(api + "/api/activity/" + name)
-        .then(res => loadActivities())
+        axios.delete( "/api/activity/" + name)
+        // .then(res => loadActivities())
         .catch(err => console.log(err));
     } 
     const { Input, Field, Control, Label } = Form;
@@ -68,10 +72,10 @@ function CreateActivities () {
                             </tr>
                         </thead>
                         <tbody>
-                            {activities.map(activity => (
+                            {state.user && state.user.activities.map(activity => (
                             <tr key={activity.activity}>
                                 <td>{activity.activity}</td>                                
-                                <td>{activity.points}</td>
+                                <td>{activity.activityPoints}</td>
                                 <td><Button className="is-rounded" onClick={()=>handleDelete(activity.activity)}>Delete</Button></td>
                                 {/* <td>X</td> */}
                             </tr>
