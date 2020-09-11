@@ -1,7 +1,5 @@
 import React from "react";
 import { Columns, Navbar} from 'react-bulma-components';
-import $ from "jquery";
-
 
 import "./style.sass";
 import { useLogout, useIsAuthenticated } from "../../utils/auth";
@@ -11,23 +9,14 @@ function RewardNavbar() {
   const logout = useLogout();
   const isAuthorized = useIsAuthenticated ();
   
-
-  $(document).ready(function() {
-
-    // Check for click events on the navbar burger icon
-    $(".navbar-burger").click(function() {
-  
-        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-        $(".navbar-burger").toggleClass("is-active");
-        $(".navbar-menu").toggleClass("is-active");
-  
-    });
-  });
+  function navbarBurger () {
+    document.querySelector('.navbar-menu').classList.toggle('is-active');
+  }
 
   return (
-    <Columns className="is-mobile">
-      <Columns.Column> 
-        <Navbar className="navbar">
+    <Columns className="is-mobile" >
+      <Columns.Column className="ml-0"> 
+        <Navbar>
             <Navbar.Brand>
               {
                 isAuthorized
@@ -39,12 +28,12 @@ function RewardNavbar() {
 
                   : (
                     <Navbar.Item className="img" renderAs="a" href="/">
-                      <img style={{ maxHeight: 50 }} src="/images/earnit_masked.png" alt="EarnIt Logo"/>
+                      <img style={{ maxHeight: 50}} src="/images/earnit_masked.png" alt="EarnIt Logo"/>
                     </Navbar.Item>
                   )
               
               }    
-              <div className="navbar-burger">
+              <div className="navbar-burger" onClick={()=>navbarBurger()}>
                 <span></span>
                 <span></span>
                 <span></span>
@@ -84,10 +73,15 @@ function RewardNavbar() {
             </Navbar.Container>         
               
         </Navbar>
-        <hr></hr>
+        <hr style={{ margin: 0, backgroundColor: 'rgba(67,170,139,.2)'}}></hr>
       </Columns.Column>
     </Columns>
   )
+
+
+
+
+  
 };
 
 export default RewardNavbar;
