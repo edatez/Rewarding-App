@@ -20,24 +20,26 @@ function About() {
               to learn and help you with the chores:
               </Heading>
 
-            <p style={{color:"black", fontSize: "18px", fontFamily:"sans-serif", opacity: "0.7" }} size={3}>
+            <p style={{color:"black", fontSize: "18px",  opacity: "0.8" }} size={3}>
                 
-                <b >Motivate your kids with Positive Reinforcement!</b>
-                
+            <Heading  size={5}>Motivate your kids with Positive Reinforcement!</Heading>
+                <p style={{fontFamily:"Balsamiq Sans, cursive", opacity: "0.8" }}>
                 <br />
-               EARN POINTS via activities  
+               EARN POINTS via activities,  
                
                 <br />
-                PICK THE REWARDS to accomplish 
+                PICK THE REWARDS to accomplish,
                 
                 <br />
-               CLEAN AND EASY Interface
+               CLEAN AND EASY interface,
                 
                 <br />
                 SEE THE PROGRESS with a ring chart
                 
                 <br />
+                <br />
                 START NOW!
+                </p>
             </p>
         </div>
 
