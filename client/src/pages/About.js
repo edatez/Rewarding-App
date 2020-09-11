@@ -4,8 +4,8 @@ import { Heading } from "react-bulma-components";
 function About() {
     return (
 
-      <div class="columns">
-      <div className="column"  >
+      <div class="columns" >
+      <div className="column pic" >
    
       <img src= "/images/photos.png"  className="img1"/> 
       </div>
