@@ -2,6 +2,7 @@ import React, { useState, useEffect  } from "react";
 import { Container, Dropdown, Form, Button, Heading } from 'react-bulma-components';
 import "./style.sass";
 import axios from "axios";
+import $ from "jquery";
 
 // Import react-circular-progressbar module and styles
 import { CircularProgressbar, buildStyles} from "react-circular-progressbar";
@@ -9,7 +10,7 @@ import "react-circular-progressbar/dist/styles.css";
 
 function Dashboard () {
 
-    const percentage = 66;  
+    const percentage = 110;  
     
     const { Input, Field, Control, Label } = Form;
 
@@ -31,9 +32,21 @@ function Dashboard () {
         });
     };
 
-    function loadProgress() {
-
+    function loadProgress(reward) {        
+        $("#reward-selected").text(reward);
     }
+
+    $(document).ready(function() {
+
+        // Check for click events on the navbar burger icon
+        $(".dropdown").click(function() {
+      
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            $(".dropdown").toggleClass("is-active");
+            $(".dropdown-menu").toggleClass("is-active");
+                  
+        });
+      });
     
     return (
             
@@ -46,16 +59,32 @@ function Dashboard () {
                         <Heading subtitle size={6}>
                             Current balance = {50}
                         </Heading>
-                        <Heading subtitle size={6}>
-                            Progress for 
-                            <Dropdown className="ml-3">                                                         
-                                {rewards.map(reward => (                                
-                                    <Dropdown.Item value="item" onClick={loadProgress(reward.reward)} key={reward.reward}>                                    
-                                        {reward.reward}                          
-                                    </Dropdown.Item>
-                                ))}                                                                                                                            
-                            </Dropdown>
-                        </Heading>
+                        <Container className="is-centered" >
+
+                            <Heading subtitle size={6}>Progress for <label id="reward-selected"></label></Heading>                            
+
+                            <div className="dropdown ml-3">
+                                <div className="dropdown-trigger">
+                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                    <span>Select Reward</span>
+                                    <span className="icon is-small">
+                                        <i className="fas fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                    </button>
+                                </div>
+
+                                <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                                    <div className="dropdown-content">
+                                        {rewards.map(reward => (                                
+                                            <Dropdown.Item value={reward.reward} onClick={()=>loadProgress(reward.reward)}>                                    
+                                                {reward.reward}                          
+                                            </Dropdown.Item>
+                                        ))}                                        
+                                    </div>
+                                </div>
+                            </div>                           
+
+                        </Container>
                     </Container>
 
                     <Container style={{ width: 250 }}>
