@@ -41,7 +41,7 @@ function AddPoints () {
                          {/* <Heading subtitle size={4}>
                     Current Activity List
                 </Heading>                */}
-                    <Table className="is-narrow is-hoverable is-bordered">
+                    <Table className="is-narrow is-hoverable is-striped">
                         <thead>
                             <tr>
                                 <th></th>                   
