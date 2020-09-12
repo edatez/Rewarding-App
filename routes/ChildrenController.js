@@ -21,6 +21,18 @@ router.post("/", passport.authenticate('jwt', { session: false }), (req, res)=>{
     )
 });
 
+//in progress, trying to delete a child
+router.delete("/:childID", passport.authenticate('jwt', {session:false}), (req,res)=>{
+
+    User.findByIdAndUpdate(req.user._id, {
+        $pull:{children:{_id: req.params.childID}}
+    }).then((user)=>{
+            res.send(user)
+    })
+
+})
+
+
 //using this route to make a reward
 router.post("/:childID/rewards", passport.authenticate('jwt', { session: false }), (req, res)=>{
     User.findById(req.user._id)
@@ -57,6 +69,7 @@ router.put("/:childID/points", passport.authenticate('jwt', {session:false}), (r
         .then(()=>{res.json(user)})
     })
 });
+
 
 
 
