@@ -30,7 +30,7 @@ function AddPoints () {
             .catch(err => console.log(err));
 
     } 
-    const { Input, Field, Control, Label } = Form;       
+    const { Input, Control, Label } = Form;       
 
     return (
             

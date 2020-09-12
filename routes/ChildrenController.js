@@ -47,7 +47,8 @@ router.post("/:childID/rewards", passport.authenticate('jwt', { session: false }
     
 })
 
-//
+// //to delete a reward
+// router.delete("/:childID/:rewardID")
 
 //using this route to redeem a reward
 router.put("/:childID/:rewardID/redeem", passport.authenticate('jwt', {session: false}), (req, res)=>{
