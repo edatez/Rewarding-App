@@ -11,7 +11,10 @@ function About() {
       </div>
 
         <div className="column">
-    
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
               <Heading  size={3}>
               For your kids to get excited 
               </Heading>
@@ -20,10 +23,10 @@ function About() {
               to learn and help you with the chores:
               </Heading>
 
-            <p style={{color:"black", fontSize: "18px",  opacity: "0.8" }} size={3}>
+            <p style={{color:"black", fontSize: "20px",  opacity: "0.85" }} size={3}>
                 
             <Heading  size={5}>Motivate your kids with Positive Reinforcement!</Heading>
-                <p style={{fontFamily:"Balsamiq Sans, cursive", opacity: "0.8" }}>
+                <p style={{fontFamily:"'Montserrat', sans-serif", opacity: "0.8" }}>
                 <br />
                EARN POINTS via activities,  
                
