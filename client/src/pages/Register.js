@@ -74,7 +74,7 @@ function Register() {
                     </Field>            
                     <br />
                     <Field>                        
-                        <Button className="is-primary is-rounded">Submit</Button>                        
+                        <Button className="is-primary is-rounded"><a className="has-text-white" href="/add-children">Submit</a></Button>                        
                     </Field>           
                     </form>
                 </Columns.Column> 
