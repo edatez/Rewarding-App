@@ -1,24 +1,18 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect, useStoreContext  } from "react";
 import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
-import axios from "axios";
 
 function RedeemRewards () {
     const [rewards, setRewards] = useState([])
+    const [state, dispatch] = useStoreContext()
 
     useEffect(() => {
         loadRewards()
       }, [])
 
-    const api = "http://localhost:3001";
     function loadRewards() {
-        (new Promise(r => setTimeout(r, 1000))).then( ()=> {
-            axios.get(api + "/api/reward")
-            .then(res => 
-                setRewards(res.data)
-            )
-            .catch(err => console.log(err))
-        });
+        // TODO set current child's rewards
+        setRewards(state.user.children.rewards);
     };
 
     var redeemChildrenRewards = (event, name) => {

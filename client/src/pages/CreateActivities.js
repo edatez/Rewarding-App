@@ -1,7 +1,6 @@
 import React, { useState, useEffect  } from "react";
 import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
-import axios from "axios";
 import api from "../utils/api";
 import { useStoreContext } from "../store";
 
@@ -45,10 +44,15 @@ function CreateActivities () {
       };
     
     var handleDelete = (name) => {
-        axios.delete( "/api/activity/" + name)
-        // .then(res => loadActivities())
+        api.deleteActivity({
+            activity: name
+        })
+        .then(() => {
+            window.location.reload()
+        })
         .catch(err => console.log(err));
-    } 
+    };
+
     const { Input, Field, Control, Label } = Form;
        
     return (
@@ -67,7 +71,7 @@ function CreateActivities () {
                             <tr>                        
                                 <th>Activity</th>                        
                                 <th>Point</th>
-                                <th>Delete</th>
+                                {/* <th>Delete</th> */}
                                 {/* <th>Show/Hide</th> */}
                             </tr>
                         </thead>

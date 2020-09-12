@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
-import axios from "axios";
 import api from "../utils/api";
 import { useStoreContext } from "../store";
 
@@ -52,7 +51,7 @@ function AddChildren () {
                             </thead>
                             <tbody>
                                 {state.user && state.user.children.map(child => (
-                                <tr key={child.childName}>
+                                <tr key={child._id}>
                                     <td>{child.childName}</td>                        
                                     <td><Button className="is-rounded is-danger is-light" onClick={()=>handleDelete(child.childName)}>Delete</Button></td>                                    
                                 </tr>
