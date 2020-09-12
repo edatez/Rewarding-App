@@ -3,25 +3,26 @@ import { Columns, Container, Dropdown, Form, Button, Heading, Table } from 'reac
 import "./style.sass";
 
 import { useStoreContext } from "../store";
+import api from "../utils/api";
 
 function RedeemRewards () {
-    const [rewards, setRewards] = useState([])
     const [state, dispatch] = useStoreContext()
     const [currentChild, setCurrentChild] = useState()
     const { Field } = Form;
 
-    useEffect(() => {
-        loadRewards()
-      }, [])
-
-    function loadRewards() {
-        // TODO set current child's rewards
-        setRewards(state.user.children.rewards);
-    };
-
-    var redeemChildrenRewards = (event, name) => {
+    var redeemChildrenRewards = (event, rewardId) => {
         event.preventDefault();
-        alert("Redeem '"+ name + "' reward")
+        
+        if(!currentChild) {
+            alert("Please select a child first");
+            return;
+        }
+
+        api.redeemReward(currentChild._id, rewardId)
+        .then(() => {
+            window.location.reload()
+        })
+        .catch(err => console.log(err));
     } 
    
        
@@ -38,7 +39,7 @@ function RedeemRewards () {
                     }>
 
                         {state.user && state.user.children.map(child => (                                
-                            <Dropdown.Item value={child}>                                    
+                            <Dropdown.Item value={child} key={child._id}>                                    
                                 {child.childName}                          
                             </Dropdown.Item>
                         ))}                        
@@ -61,16 +62,18 @@ function RedeemRewards () {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {rewards.map(reward => (
-                                    <tr key={reward.reward}>                                        
+                                    { currentChild && state.user  ? 
+                                    currentChild.rewards.map(reward => (
+                                    <tr key={reward._id}>                                        
                                         <td><img style={{ width: 40, marginTop: -5 }} src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/bike-128.png"></img></td> 
-                                        <td>{reward.reward}</td>                              
-                                        <td>{reward.points}</td>
-                                        <td><Button className="is-primary is-rounded" onClick={event => redeemChildrenRewards(event, reward.reward)}>Redeem</Button></td>
+                                        <td>{reward.rewardName}</td>                              
+                                        <td>{reward.rewardPoints}</td>
+                                        <td><Button disabled={reward.redeemed} className="is-primary is-rounded" onClick={event => redeemChildrenRewards(event, reward._id)}>Redeem</Button></td>
                                     </tr>
-                                    ))}
-                                    <tr>
-                                        </tr>
+                                    )) : 
+                                    <tr key="None">
+                                        <td colSpan="4">Select a child to see rewards list</td>
+                                    </tr> }
                                 </tbody>
 
                             </Table>
