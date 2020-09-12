@@ -35,10 +35,15 @@ function CreateRewards () {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         event.preventDefault();
 
-        // TODO update current child's rewards array before sending the request
-        var currentChild = state.user.children[0];
+        if(!currentChild) {
+            alert("Please select a child first");
+            return;
+        }
 
-        api.createReward(currentChild)
+        api.createReward(currentChild._id, {
+            reward: formObject.reward,
+            points: formObject.points
+        })
         .then(() => {
             window.location.reload()
         })
@@ -69,7 +74,7 @@ function CreateRewards () {
                     }>
 
                         {state.user && state.user.children.map(child => (                                
-                            <Dropdown.Item value={child}>                                    
+                            <Dropdown.Item value={child} key={child._id}>                                    
                                 {child.childName}                          
                             </Dropdown.Item>
                         ))}                        
