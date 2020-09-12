@@ -53,7 +53,7 @@ function CreateActivities () {
         .catch(err => console.log(err));
     };
 
-    const { Input, Field, Control, Label } = Form;
+    const { Field, Control } = Form;
        
     return (
             

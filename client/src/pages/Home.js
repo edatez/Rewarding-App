@@ -8,7 +8,7 @@ function Home() {
     const isAuth=useIsAuthenticated();
     const logout=useLogout();
 
-    const { Input, Field, Control, Label } = Form;
+    const { Field } = Form;
     
     return (
         <Container className="is-mobile">        

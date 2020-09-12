@@ -1,10 +1,14 @@
-import React, { useState, useEffect, useStoreContext  } from "react";
-import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
+import React, { useState, useEffect } from "react";
+import { Columns, Container, Dropdown, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
+
+import { useStoreContext } from "../store";
 
 function RedeemRewards () {
     const [rewards, setRewards] = useState([])
     const [state, dispatch] = useStoreContext()
+    const [currentChild, setCurrentChild] = useState()
+    const { Field } = Form;
 
     useEffect(() => {
         loadRewards()
@@ -19,7 +23,7 @@ function RedeemRewards () {
         event.preventDefault();
         alert("Redeem '"+ name + "' reward")
     } 
-    const { Input, Field, Control, Label } = Form;
+   
        
     return (
             
@@ -27,7 +31,19 @@ function RedeemRewards () {
 
             <Container className="is-centered">
                 <Columns.Column className="is-narrow has-text-centered ">  
-                    <Heading className="heading1">Redeem Rewards</Heading>
+                    <Heading className="heading1">Redeem Rewards for</Heading>
+
+                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label={
+                        currentChild ? currentChild.childName : "Select Child"
+                    }>
+
+                        {state.user && state.user.children.map(child => (                                
+                            <Dropdown.Item value={child}>                                    
+                                {child.childName}                          
+                            </Dropdown.Item>
+                        ))}                        
+                        
+                    </Dropdown>
 
                     <Heading subtitle size={5}>Current Balance: {50}</Heading>
 

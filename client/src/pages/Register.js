@@ -29,7 +29,7 @@ function Register() {
        
     }
 
-    const { Input, Field, Control, Label } = Form;
+    const { Field, Control } = Form;
     
     return (
         <Container className="is-mobile">

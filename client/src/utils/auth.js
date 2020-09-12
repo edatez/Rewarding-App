@@ -77,12 +77,12 @@ export const useAuthTokenStore = () => {
                 // Validate the token with the server
                 api
                     .authenticated()
+                    .catch( invalidate )
                     .then( (res) => {
                         dispatch(getStoreAction( LOGIN_USER, userAuth ))
                         dispatch(getStoreAction( SET_USER, res.data ))
                     })
-                    .catch( invalidate );
-
+                    
             }
 
         }

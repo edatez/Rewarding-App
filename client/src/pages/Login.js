@@ -31,7 +31,7 @@ function Login() {
 
     }   
     
-    const { Input, Field, Control, Label } = Form;
+    const { Field, Control } = Form;
 
     return (
         
