@@ -51,7 +51,7 @@ function AddChildren () {
                             </thead>
                             <tbody>
                                 {state.user && state.user.children.map(child => (
-                                <tr key={child.childName}>
+                                <tr key={child._id}>
                                     <td>{child.childName}</td>                        
                                     <td><Button className="is-rounded is-danger is-light" onClick={()=>handleDelete(child.childName)}>Delete</Button></td>                                    
                                 </tr>

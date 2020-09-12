@@ -1,33 +1,23 @@
-import React, { useState, useEffect  } from "react";
-import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
+import React, { useState } from "react";
+import { Columns, Container, Dropdown, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
+
 import api from "../utils/api";
 import { useStoreContext } from "../store";
 
+
 function AddPoints () {
-    const [state, dispatch]= useStoreContext()
+    const [state, dispatch]= useStoreContext()   
 
-    const [activities, setActivities] = useState([])
+    const { Field } = Form;
 
+    const [currentChild, setCurrentChild] = useState()
 
-
-    // useEffect(() => {
-    //     loadActivities()
-    //   }, [])
-
-    // const api = "http://localhost:3001";
-    // function loadActivities() {
-    //     (new Promise(r => setTimeout(r, 1000))).then( ()=> {
-    //         axios.get(api + "/api/activity")
-    //         .then(res => 
-    //             setActivities(res.data)
-    //         )
-    //         .catch(err => console.log(err))
-    //     });
-    // };
+    console.log(currentChild);
 
     var addChildrenPoints = (event, name) => {
         event.preventDefault();
+
         alert("Adding '"+ name + "' points")
 
         // TODO update current child's points before sending the request
@@ -40,26 +30,35 @@ function AddPoints () {
             .catch(err => console.log(err));
 
     } 
-    const { Input, Field, Control, Label } = Form;
-       
+    const { Input, Field, Control, Label } = Form;       
+
     return (
             
         <Container className="is-mobile">
             <Container className="is-centered">
                 <Columns.Column className="is-narrow has-text-centered ">
 
-                    <Heading className="heading1">Add Points</Heading>
+                    <Heading className="heading1">Add Points for <label id="child-selected"></label></Heading>                   
+
+                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label={
+                        currentChild ? currentChild.childName : "Select Child"
+                    }>
+
+                        {state.user && state.user.children.map(child => (                                
+                            <Dropdown.Item value={child}>                                    
+                                {child.childName}                          
+                            </Dropdown.Item>
+                        ))}                        
+                        
+                    </Dropdown>
 
                     <Heading subtitle size={5}>Current Balance: {50}</Heading>
 
                     <Container style={{ marginBottom: 40 }}>
-                         {/* <Heading subtitle size={4}>
-                    Current Activity List
-                </Heading>                */}
+                         
                     <Table className="is-narrow is-hoverable is-striped">
                         <thead>
-                            <tr>
-                                <th></th>                   
+                            <tr>                                               
                                 <th>Activity</th>                        
                                 <th>Point</th>
                                 <th>Add Points</th>                                
@@ -67,14 +66,20 @@ function AddPoints () {
                         </thead>
                         <tbody>
                             {state.user && state.user.activities.map(activity => (
-                            <tr key={activity.activity}>
-                                <td><img style={{ width: 40 }} src="https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-05-128.png"></img></td>
+                            <tr key={activity._id}>                                
                                 <td>{activity.activity}</td>                                
                                 <td>{activity.activityPoints}</td>
-                                {/* <td><Button className="is-primary is-rounded" onClick={event => addChildrenPoints(event, activity.activity)}>Add Points</Button></td>                                 */}
+                                <td><Button className="is-primary is-rounded" onClick={event => addChildrenPoints(event, activity.activity)}>Add Points</Button></td>                                
                             </tr>
                             ))}
                         </tbody>
+                        <tfoot>
+                            <tr>                                               
+                                <td></td>                        
+                                <td></td>
+                                <td></td>                                
+                            </tr>
+                        </tfoot>
 
                             </Table>
                         
@@ -94,6 +99,3 @@ function AddPoints () {
 }
 
 export default AddPoints;
-
-// Table for current activities: show activities, points, checkbox to show/hide/delete
-// Form to enter activities, points
