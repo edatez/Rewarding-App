@@ -41,10 +41,10 @@ const UserSchema = new Schema({
       type: String,
       required: true
     },
-    pointsEarned:[{
+    pointsEarned:{
         type: Number,
         required: true
-    }],
+    },
     rewards:[rewardsSubSchema]
   })],
 
