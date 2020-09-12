@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useStoreContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Dropdown, Form, Button, Heading } from 'react-bulma-components';
 import "./style.sass";
 import $ from "jquery";
+import { useStoreContext } from "../store";
 
 // Import react-circular-progressbar module and styles
 import { CircularProgressbar, buildStyles} from "react-circular-progressbar";
@@ -18,7 +19,7 @@ function Dashboard () {
     const [state, dispatch] = useStoreContext()
 
     useEffect(() => {
-        loadRewards()
+        // loadRewards()
       }, [])
 
     function loadRewards() {
@@ -76,7 +77,7 @@ function Dashboard () {
 
                                 <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                     <div className="dropdown-content">
-                                        {rewards.map(reward => (                                
+                                        {state.user && state.user.children.rewards.map(reward => (                               
                                             <Dropdown.Item value={reward.reward} onClick={()=>loadProgress(reward.reward)}>                                    
                                                 {reward.reward}                          
                                             </Dropdown.Item>
