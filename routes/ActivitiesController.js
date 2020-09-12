@@ -22,4 +22,16 @@ router.post("/", passport.authenticate('jwt', {session: false}), (req, res)=>{
     )
 });
 
+//using this route to update completed boolean 
+router.put("/:activityID/completed", passport.authenticate('jwt', {session: false}), (req, res)=>{
+
+    User.findById(req.user._id)
+    .then((user)=>{
+        const activity = user.activities.id(req.params.activityID)
+        activity.completed = true
+        user.save()
+        .then(()=>{res.json(user)})
+    })
+})
+
 module.exports = router
