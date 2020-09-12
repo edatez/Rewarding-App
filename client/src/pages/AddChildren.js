@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
-import axios from "axios";
 import api from "../utils/api";
 import { useStoreContext } from "../store";
 

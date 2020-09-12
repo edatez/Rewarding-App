@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Columns, Container, Dropdown, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
 
+import api from "../utils/api";
 import { useStoreContext } from "../store";
 
 
@@ -16,9 +17,21 @@ function AddPoints () {
 
     var addChildrenPoints = (event, name) => {
         event.preventDefault();
-        alert("Add '"+ name + "' activity")
-    };
-           
+
+        alert("Adding '"+ name + "' points")
+
+        // TODO update current child's points before sending the request
+        var currentChild = state.user.children[0];
+
+        api.AddPoint(currentChild)
+            .then(() => {
+                window.location.reload()
+            })
+            .catch(err => console.log(err));
+
+    } 
+    const { Input, Field, Control, Label } = Form;       
+
     return (
             
         <Container className="is-mobile">
