@@ -11,6 +11,8 @@ function AddPoints () {
 
     const [currentChild, setCurrentChild] = useState()
 
+    const { Field } = Form;
+
     console.log(currentChild);
 
     var addChildrenPoints = (event, name) => {
@@ -27,8 +29,7 @@ function AddPoints () {
             })
             .catch(err => console.log(err));
 
-    } 
-    const { Input, Field, Control, Label } = Form;       
+    }      
 
     return (
             
