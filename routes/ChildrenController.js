@@ -21,7 +21,7 @@ router.post("/", passport.authenticate('jwt', { session: false }), (req, res)=>{
     )
 });
 
-//in progress, trying to delete a child
+// to delete a child
 router.delete("/:childID", passport.authenticate('jwt', {session:false}), (req,res)=>{
 
     User.findByIdAndUpdate(req.user._id, {
@@ -46,6 +46,8 @@ router.post("/:childID/rewards", passport.authenticate('jwt', { session: false }
     })
     
 })
+
+//
 
 //using this route to redeem a reward
 router.put("/:childID/:rewardID/redeem", passport.authenticate('jwt', {session: false}), (req, res)=>{
