@@ -1,48 +1,57 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect, useStoreContext  } from "react";
 import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
 import axios from "axios";
+import api from "../utils/api";
 
 function CreateRewards () {
     const [rewards, setRewards] = useState([])
     const [formObject, setFormObject] = useState({})
+    const [state, dispatch] = useStoreContext()
 
-    useEffect(() => {
-        loadRewards()
-      }, [])
+    // useEffect(() => {
+    //     loadRewards()
+    //   }, [])
 
-    const api = "http://localhost:3001";
-    function loadRewards() {
-        (new Promise(r => setTimeout(r, 1000))).then( ()=> {
-            axios.get(api + "/api/reward")
-            .then(res => 
-                setRewards(res.data)
-            )
-            .catch(err => console.log(err))
-        });
-    };
+    // const api = "http://localhost:3001";
+    // function loadRewards() {
+    //     (new Promise(r => setTimeout(r, 1000))).then( ()=> {
+    //         axios.get(api + "/api/reward")
+    //         .then(res => 
+    //             setRewards(res.data)
+    //         )
+    //         .catch(err => console.log(err))
+    //     });
+    // };
 
-    var handleInputChange = event => {
-        const { name, value } = event.target;
-        setFormObject({...formObject, [name]: value})
-      };
+    // var handleInputChange = event => {
+    //     const { name, value } = event.target;
+    //     setFormObject({...formObject, [name]: value})
+    //   };
 
     var handleFormSubmit = event => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         event.preventDefault();
-        axios.post(api + "/api/reward", {
-            reward: formObject.reward,
-            points: formObject.points
-          })
-        .then(res => {
-            loadRewards();
+        api.createReward({
+            rewardName: formObject.reward,
+            rewardPoints: formObject.points,
         })
+        // .then(res ={
+
+        // })
+        // axios.post(api + "/api/reward", {
+        //     reward: formObject.reward,
+        //     points: formObject.points
+        //   })
+        // .then(res => {
+        //     loadRewards();
+        // })
         .catch(err => console.log(err));
       };
     
     var handleDelete = (name) => {
         axios.delete(api + "/api/reward/" + name)
-        .then(res => loadRewards())
+        // .then(res => loadRewards())
         .catch(err => console.log(err));
     } 
 
@@ -68,10 +77,10 @@ function CreateRewards () {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {rewards.map(reward => (
+                                    {state.user && state.user.children.rewards.map(reward=> (
                                     <tr key={reward.reward}>
-                                        <th>{reward.reward}</th>                                
-                                        <td>{reward.points}</td>
+                                        <th>{reward.rewardName}</th>                                
+                                        <td>{reward.rewardPoints}</td>
                                         <td><Button className="is-primary is-rounded" onClick={()=>handleDelete(reward.reward)}>Delete</Button></td>                                        
                                     </tr>
                                     ))}
@@ -88,10 +97,10 @@ function CreateRewards () {
                         <form>
                             <Field>                
                                 <Control>                    
-                                    <input className="input" type="text" name="reward" onChange={handleInputChange} placeholder="Enter Reward"/>                                                
+                                    {/* <input className="input" type="text" name="reward" onChange={handleInputChange} placeholder="Enter Reward"/>                                                 */}
                                 </Control> 
                                 <Control>                    
-                                    <input className="input" type="text" name="points" onChange={handleInputChange} placeholder="Enter Point for Reward"/>                                                
+                                    {/* <input className="input" type="text" name="points" onChange={handleInputChange} placeholder="Enter Point for Reward"/>                                                 */}
                                 </Control>               
                             </Field>
                         </form> 

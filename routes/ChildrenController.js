@@ -22,27 +22,29 @@ router.post("/", passport.authenticate('jwt', { session: false }), (req, res)=>{
     )
 });
 
+
 router.post("/:childID/rewards", passport.authenticate('jwt', { session: false }), (req, res)=>{
     User.findById(req.user._id)
     .then((user)=>{
         user.children.id(req.params.childID).rewards.push({
-            rewardName: "test",
-            rewardPoints: 100,
+            rewardName: req.body.reward,
+            rewardPoints: req.body.points,
         });
         user.save()
         .then(()=>{res.json(user)})
     })
     
 })
-// route in progress
-router.post("/:rewardID/redeem", passport.authenticate('jwt', {session: false}), (req, res)=>{
-    Reward.findById(req.params.rewardID)
-    .then((reward)=>{
-        reward.redeemed= true
-        reward.save()
-        .then(()=>{res.json(reward)})
-    })
 
+
+router.put("/:childID/:rewardID/redeem", passport.authenticate('jwt', {session: false}), (req, res)=>{
+    User.findById(req.user._id)
+    .then((user)=>{
+        const redeemedVariable = user.children.id(req.params.childID).rewards.id(req.params.rewardID)
+        redeemedVariable.redeemed = true
+        user.save()
+        .then(()=>{res.json(user)})
+    })
 })
   
 // route for adding points

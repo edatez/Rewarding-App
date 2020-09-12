@@ -3,6 +3,9 @@ const router = express.Router();
 const {User} = require("../models");
 const passport = require("passport");
 
+
+
+//this controller is adding an activity to the user that is logged in, use it to add activities to the current user
 router.post("/", passport.authenticate('jwt', {session: false}), (req, res)=>{
 
     console.log(req.user._id)

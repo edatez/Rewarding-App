@@ -22,8 +22,8 @@ function AddChildren () {
         api.addChildren({
             childName: formObject.childName,            
           })
-        .then(res => {
-            // loadActivities();
+        .then(() => {
+            window.location.reload()
         })
         .catch(err => console.log(err));
       };
