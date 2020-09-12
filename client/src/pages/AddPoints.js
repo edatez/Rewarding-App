@@ -9,9 +9,9 @@ import { useStoreContext } from "../store";
 function AddPoints () {
     const [state, dispatch]= useStoreContext()   
 
-    const { Field } = Form;
-
     const [currentChild, setCurrentChild] = useState()
+
+    const { Field } = Form;
 
     console.log(currentChild);
 
@@ -29,8 +29,7 @@ function AddPoints () {
             })
             .catch(err => console.log(err));
 
-    } 
-    const { Input, Control, Label } = Form;       
+    }      
 
     return (
             

@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useStoreContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Dropdown, Form, Button, Heading } from 'react-bulma-components';
 import "./style.sass";
 import $ from "jquery";
+import { useStoreContext } from "../store";
 
 // Import react-circular-progressbar module and styles
 import { CircularProgressbar, buildStyles} from "react-circular-progressbar";
@@ -11,14 +12,16 @@ function Dashboard () {
 
     const percentage = 110;  
     
-    const { Input, Field, Control, Label } = Form;
+    const { Field } = Form;
 
     const [rewards, setRewards] = useState([])
 
     const [state, dispatch] = useStoreContext()
 
+    const [currentChild, setCurrentChild] = useState()
+
     useEffect(() => {
-        loadRewards()
+        // loadRewards()
       }, [])
 
     function loadRewards() {
@@ -54,7 +57,19 @@ function Dashboard () {
         <Container className="is-mobile">
             <Container className="is-centered">
                 <Container className="is-narrow has-text-centered">
-                    <Heading className="heading1">Dashboard</Heading>
+                    <Heading className="heading1">Dashboard for </Heading>
+
+                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label={
+                        currentChild ? currentChild.childName : "Select Child"
+                    }>
+
+                        {state.user && state.user.children.map(child => (                                
+                            <Dropdown.Item value={child}>                                    
+                                {child.childName}                          
+                            </Dropdown.Item>
+                        ))}                        
+                        
+                    </Dropdown>
 
                     <Container style={{ marginBottom: 40 }}>
                         <Heading subtitle size={6}>
@@ -76,7 +91,7 @@ function Dashboard () {
 
                                 <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                     <div className="dropdown-content">
-                                        {rewards.map(reward => (                                
+                                        {currentChild && currentChild.rewards.map(reward => (                               
                                             <Dropdown.Item value={reward.reward} onClick={()=>loadProgress(reward.reward)}>                                    
                                                 {reward.reward}                          
                                             </Dropdown.Item>

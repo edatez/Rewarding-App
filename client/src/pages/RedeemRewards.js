@@ -1,25 +1,30 @@
-import React, { useState, useEffect, useStoreContext  } from "react";
-import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
+import React, { useState, useEffect } from "react";
+import { Columns, Container, Dropdown, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
 
+import { useStoreContext } from "../store";
+import api from "../utils/api";
+
 function RedeemRewards () {
-    const [rewards, setRewards] = useState([])
     const [state, dispatch] = useStoreContext()
+    const [currentChild, setCurrentChild] = useState()
+    const { Field } = Form;
 
-    useEffect(() => {
-        loadRewards()
-      }, [])
-
-    function loadRewards() {
-        // TODO set current child's rewards
-        setRewards(state.user.children.rewards);
-    };
-
-    var redeemChildrenRewards = (event, name) => {
+    var redeemChildrenRewards = (event, rewardId) => {
         event.preventDefault();
-        alert("Redeem '"+ name + "' reward")
+        
+        if(!currentChild) {
+            alert("Please select a child first");
+            return;
+        }
+
+        api.redeemReward(currentChild._id, rewardId)
+        .then(() => {
+            window.location.reload()
+        })
+        .catch(err => console.log(err));
     } 
-    const { Input, Field, Control, Label } = Form;
+   
        
     return (
             
@@ -27,7 +32,19 @@ function RedeemRewards () {
 
             <Container className="is-centered">
                 <Columns.Column className="is-narrow has-text-centered ">  
-                    <Heading className="heading1">Redeem Rewards</Heading>
+                    <Heading className="heading1">Redeem Rewards for</Heading>
+
+                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label={
+                        currentChild ? currentChild.childName : "Select Child"
+                    }>
+
+                        {state.user && state.user.children.map(child => (                                
+                            <Dropdown.Item value={child} key={child._id}>                                    
+                                {child.childName}                          
+                            </Dropdown.Item>
+                        ))}                        
+                        
+                    </Dropdown>
 
                     <Heading subtitle size={5}>Current Balance: {50}</Heading>
 
@@ -45,16 +62,18 @@ function RedeemRewards () {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {rewards.map(reward => (
-                                    <tr key={reward.reward}>                                        
+                                    { currentChild && state.user  ? 
+                                    currentChild.rewards.map(reward => (
+                                    <tr key={reward._id}>                                        
                                         <td><img style={{ width: 40, marginTop: -5 }} src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/bike-128.png"></img></td> 
-                                        <td>{reward.reward}</td>                              
-                                        <td>{reward.points}</td>
-                                        <td><Button className="is-primary is-rounded" onClick={event => redeemChildrenRewards(event, reward.reward)}>Redeem</Button></td>
+                                        <td>{reward.rewardName}</td>                              
+                                        <td>{reward.rewardPoints}</td>
+                                        <td><Button disabled={reward.redeemed} className="is-primary is-rounded" onClick={event => redeemChildrenRewards(event, reward._id)}>Redeem</Button></td>
                                     </tr>
-                                    ))}
-                                    <tr>
-                                        </tr>
+                                    )) : 
+                                    <tr key="None">
+                                        <td colSpan="4">Select a child to see rewards list</td>
+                                    </tr> }
                                 </tbody>
 
                             </Table>

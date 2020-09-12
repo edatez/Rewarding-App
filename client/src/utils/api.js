@@ -38,8 +38,13 @@ export default {
 
     },
 
-    createReward(child){
-        return axios.put("/api/children/", child)
+    createReward(childId, data){
+        return axios.post("/api/children/" + childId + "/rewards", data);
+    },
+
+    
+    redeemReward(childId, rewardId){
+        return axios.put("/api/children/" + childId + "/" + rewardId + "/redeem", {});
     },
     
     addPoint(child){

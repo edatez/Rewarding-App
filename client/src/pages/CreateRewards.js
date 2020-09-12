@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useStoreContext  } from "react";
-import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
+import React, { useState } from "react";
+import { Columns, Container, Dropdown, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
 import api from "../utils/api";
+import { useStoreContext } from "../store";
 
 function CreateRewards () {
     const [rewards, setRewards] = useState([])
     const [formObject, setFormObject] = useState({})
     const [state, dispatch] = useStoreContext()
+    const [currentChild, setCurrentChild] = useState()
+    const { Field, Control } = Form;
 
     // useEffect(() => {
     //     loadRewards()
@@ -32,10 +35,15 @@ function CreateRewards () {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         event.preventDefault();
 
-        // TODO update current child's rewards array before sending the request
-        var currentChild = state.user.children[0];
+        if(!currentChild) {
+            alert("Please select a child first");
+            return;
+        }
 
-        api.createReward(currentChild)
+        api.createReward(currentChild._id, {
+            reward: formObject.reward,
+            points: formObject.points
+        })
         .then(() => {
             window.location.reload()
         })
@@ -52,14 +60,26 @@ function CreateRewards () {
         .catch(err => console.log(err));
     };
 
-    const { Input, Field, Control, Label } = Form;
+    
        
     return (
             
         <Container className="is-mobile">
             <Container className="is-centered">
                 <Columns.Column className="is-narrow has-text-centered ">  
-                    <Heading className="heading1">Create Rewards</Heading>
+                    <Heading className="heading1">Create Rewards for</Heading>
+
+                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label={
+                        currentChild ? currentChild.childName : "Select Child"
+                    }>
+
+                        {state.user && state.user.children.map(child => (                                
+                            <Dropdown.Item value={child} key={child._id}>                                    
+                                {child.childName}                          
+                            </Dropdown.Item>
+                        ))}                        
+                        
+                    </Dropdown>
 
                     <Container style={{ marginBottom: 40 }}>
                         {/* <Heading subtitle size={4}>
@@ -74,7 +94,7 @@ function CreateRewards () {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {state.user && state.user.children.rewards.map(reward=> (
+                                    {currentChild && currentChild.rewards.map(reward=> (
                                     <tr key={reward.reward}>
                                         <th>{reward.rewardName}</th>                                
                                         <td>{reward.rewardPoints}</td>
@@ -94,11 +114,10 @@ function CreateRewards () {
                         <form>
                             <Field>                
                                 <Control>                    
-                                    {<input className="input" type="text" name="reward" onChange={handleInputChange} placeholder="Enter Reward"/> }                                             */}
+                                    {<input className="input" type="text" name="reward" onChange={handleInputChange} placeholder="Enter Reward"/> }                                     
                                 </Control> 
                                 <Control>                    
-                                    {<input className="input" type="text" name="points" onChange={handleInputChange} placeholder="Enter Point for Reward"/> }                                                */}
-                                </Control>               
+                                    {<input className="input" type="text" name="points" onChange={handleInputChange} placeholder="Enter Point for Reward"/> }                                                          </Control>               
                             </Field>
                         </form> 
                         
