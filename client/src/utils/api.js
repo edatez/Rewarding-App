@@ -36,6 +36,10 @@ export default {
 
         return axios.delete("/api/children/", data);
 
+    },
+
+    createReward(data){
+        return axios.post("/api/children/", data)
     }
 
 }

@@ -38,8 +38,8 @@ function CreateActivities () {
             activity: formObject.activity,
             points: formObject.points
           })
-        .then(res => {
-            // loadActivities();
+        .then(() => {
+            window.location.reload()
         })
         .catch(err => console.log(err));
       };
