@@ -2,24 +2,29 @@ import React, { useState, useEffect  } from "react";
 import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
 import axios from "axios";
+import { useStoreContext } from "../store";
 
 function AddPoints () {
+    const [state, dispatch]= useStoreContext()
+
     const [activities, setActivities] = useState([])
 
-    useEffect(() => {
-        loadActivities()
-      }, [])
 
-    const api = "http://localhost:3001";
-    function loadActivities() {
-        (new Promise(r => setTimeout(r, 1000))).then( ()=> {
-            axios.get(api + "/api/activity")
-            .then(res => 
-                setActivities(res.data)
-            )
-            .catch(err => console.log(err))
-        });
-    };
+
+    // useEffect(() => {
+    //     loadActivities()
+    //   }, [])
+
+    // const api = "http://localhost:3001";
+    // function loadActivities() {
+    //     (new Promise(r => setTimeout(r, 1000))).then( ()=> {
+    //         axios.get(api + "/api/activity")
+    //         .then(res => 
+    //             setActivities(res.data)
+    //         )
+    //         .catch(err => console.log(err))
+    //     });
+    // };
 
     var addChildrenPoints = (event, name) => {
         event.preventDefault();
@@ -51,12 +56,12 @@ function AddPoints () {
                             </tr>
                         </thead>
                         <tbody>
-                            {activities.map(activity => (
+                            {state.user && state.user.activities.map(activity => (
                             <tr key={activity.activity}>
                                 <td><img style={{ width: 40 }} src="https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-05-128.png"></img></td>
                                 <td>{activity.activity}</td>                                
-                                <td>{activity.points}</td>
-                                <td><Button className="is-primary is-rounded" onClick={event => addChildrenPoints(event, activity.activity)}>Add Points</Button></td>                                
+                                <td>{activity.activityPoints}</td>
+                                {/* <td><Button className="is-primary is-rounded" onClick={event => addChildrenPoints(event, activity.activity)}>Add Points</Button></td>                                 */}
                             </tr>
                             ))}
                         </tbody>

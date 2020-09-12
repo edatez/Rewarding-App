@@ -1,7 +1,7 @@
 
 # Reward Application
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/edatez/reward-application)
-[Deployed at Heroku](https://reward-application.herokuapp.com/)
+[Deployed at Heroku](https://earn-it-application.herokuapp.com/)
 
 ## Description
 

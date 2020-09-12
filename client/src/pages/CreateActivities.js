@@ -76,7 +76,7 @@ function CreateActivities () {
                             <tr key={activity.activity}>
                                 <td>{activity.activity}</td>                                
                                 <td>{activity.activityPoints}</td>
-                                <td><Button className="is-rounded is-danger is-light" onClick={()=>handleDelete(activity.activity)}>Delete</Button></td>
+                                {/* <td><Button className="is-rounded is-danger is-light" onClick={()=>handleDelete(activity.activity)}>Delete</Button></td> */}
                                 {/* <td>X</td> */}
                             </tr>
                             ))}

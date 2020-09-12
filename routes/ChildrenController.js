@@ -34,7 +34,7 @@ router.post("/:childID/rewards", passport.authenticate('jwt', { session: false }
     })
     
 })
-
+// route in progress
 router.post("/:rewardID/redeem", passport.authenticate('jwt', {session: false}), (req, res)=>{
     Reward.findById(req.params.rewardID)
     .then((reward)=>{
@@ -45,4 +45,20 @@ router.post("/:rewardID/redeem", passport.authenticate('jwt', {session: false}),
 
 })
   
+// route for adding points
+// (eda in progress)
+router.post("/:childID/points", passport.authenticate('jwt', {session:false}), (req, res)=>{
+    User.findById(req.user._id)
+    .then ((user)=>{
+        user.children.id(req.params.childID).pointsEarned.update({
+            pointsEarned:pointsEarned+50,
+
+        });
+        user.save()
+        .then(()=>{res.json(user)})
+    })
+});
+
+
+
 module.exports = router;
