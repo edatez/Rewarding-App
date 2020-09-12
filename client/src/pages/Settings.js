@@ -13,6 +13,9 @@ function Settings() {
       <Button className="is-primary is-rounded"><a className="has-text-white" href="/add-children">Add Children</a></Button>
       <br></br>
       <br></br>
+      <Button className="is-primary is-rounded"><a className="has-text-white" href="/add-points">Add Points</a></Button>
+      <br></br>
+      <br></br>
       <Button className="is-primary is-rounded"><a className="has-text-white" href="/create-rewards">Create Rewards</a></Button>
       <br></br>
       <br></br>
