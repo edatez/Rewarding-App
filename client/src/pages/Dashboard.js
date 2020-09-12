@@ -1,7 +1,6 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect, useStoreContext } from "react";
 import { Container, Dropdown, Form, Button, Heading } from 'react-bulma-components';
 import "./style.sass";
-import axios from "axios";
 import $ from "jquery";
 
 // Import react-circular-progressbar module and styles
@@ -16,20 +15,22 @@ function Dashboard () {
 
     const [rewards, setRewards] = useState([])
 
-    const api = "http://localhost:3001";
+    const [state, dispatch] = useStoreContext()
 
     useEffect(() => {
         loadRewards()
       }, [])
 
     function loadRewards() {
-        (new Promise(r => setTimeout(r, 1000))).then( ()=> {
-            axios.get(api + "/api/reward")
-            .then(res => 
-                setRewards(res.data)
-            )
-            .catch(err => console.log(err))
-        });
+        // (new Promise(r => setTimeout(r, 1000))).then( ()=> {
+        //     axios.get(api + "/api/reward")
+        //     .then(res => 
+        //         setRewards(res.data)
+        //     )
+        //     .catch(err => console.log(err))
+        // });
+        // TODO use current child's rewards
+        setRewards(state.user.children.rewards);
     };
 
     function loadProgress(reward) {        
