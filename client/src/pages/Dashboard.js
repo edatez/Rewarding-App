@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Dropdown, Form, Button, Heading } from 'react-bulma-components';
 import "./style.sass";
-import $ from "jquery";
+
 import { useStoreContext } from "../store";
 
 // Import react-circular-progressbar module and styles
@@ -9,49 +9,26 @@ import { CircularProgressbar, buildStyles} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 function Dashboard () {
-
-    const percentage = 110;  
     
+   
     const { Field } = Form;
-
-    const [currentReward, setCurrentReward] = useState()
 
     const [state, dispatch] = useStoreContext()
 
     const [currentChild, setCurrentChild] = useState()
+    const [currentReward, setCurrentReward] = useState()
+    const [percentage, setPercentage] = useState(0)
 
-    useEffect(() => {
-        // loadRewards()
-      }, [])
-
-    function loadRewards() {
-        // (new Promise(r => setTimeout(r, 1000))).then( ()=> {
-        //     axios.get(api + "/api/reward")
-        //     .then(res => 
-        //         setRewards(res.data)
-        //     )
-        //     .catch(err => console.log(err))
-        // });
-        // TODO use current child's rewards
-        // setCurrentReward(currentChild.rewards);
-    };
-
-    function loadProgress() {
-        if ( currentChild && currentReward ) {
-            var pointsEarned = parseInt(currentChild.pointsEarned);
-            var rewardPoints = parseInt(currentReward.rewardPoints);
-            var percentage = (pointsEarned / rewardPoints) * 100;
-            return percentage;
-        } else {
-            return 0;
-        } 
-        
+    var setChild = (value) => {
+        setCurrentChild(value);
     }
-
     
+    var setReward = (value) => {
+        setCurrentReward(value);
+        setPercentage((100 * currentChild.pointsEarned / value.rewardPoints).toFixed(0));
+    }       
 
-    console.log(currentReward && currentReward.rewardPoints)
-    
+    console.log(currentReward && currentReward.rewardPoints)    
     
     return (
             
@@ -60,7 +37,7 @@ function Dashboard () {
                 <Container className="is-narrow has-text-centered">
                     <Heading className="heading1">Dashboard for </Heading>
 
-                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label={
+                    <Dropdown className="heading1 mb-5" onChange={(value) => setChild(value)} label={
                         currentChild ? currentChild.childName : "Select Child"
                     }>
 
@@ -74,55 +51,28 @@ function Dashboard () {
 
                     <Container style={{ marginBottom: 40 }}>
                         <Heading subtitle size={6}>
-                            Current balance = {currentChild && currentChild.pointsEarned}
+                            Current balance = {currentChild ? currentChild.pointsEarned : 0}
                         </Heading>
                         <Container className="is-centered" >
 
-                            <Heading subtitle size={6}>Progress for <label id="reward-selected"></label></Heading>                            
+                            <Heading subtitle size={6}>Progress for <label id="reward-selected"></label></Heading>                           
 
-                            {/* <div className="dropdown ml-3">
-                                <div className="dropdown-trigger">
-                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                    <span>Select Reward</span>
-                                    <span className="icon is-small">
-                                        <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                                    </button>
-                                </div>
-
-                                <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                                    <div className="dropdown-content">
-                                        {currentChild && currentChild.rewards.map(reward => (                               
-                                            <Dropdown.Item value={reward._id} onClick={()=>loadProgress(reward._id)}>                                    
-                                                {reward.rewardName}                          
-                                            </Dropdown.Item>
-                                        ))}                                        
-                                    </div>
-                                </div>
-                            </div> */}
-
-                            <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentReward(value)} label={
-                                currentReward ? currentReward.rewardName : "Select Reward"
-                            }>
-
-                                {currentChild && currentChild.rewards.map(reward => (                                
-                                    <Dropdown.Item value={reward} key={reward._id}>                                    
-                                        {reward.rewardName}                          
-                                    </Dropdown.Item>
-                                ))}                        
-                                
+                            <Dropdown className="heading1" onChange={(value) => setReward(value)} label={
+                                    currentReward ? currentReward.rewardName : "Select Reward" }>
+                                    {currentChild && currentChild.rewards.map(reward => (                               
+                                        <Dropdown.Item value={reward} key={reward._id}>                                    
+                                            {reward.rewardName}                          
+                                        </Dropdown.Item>
+                                    ))}         
                             </Dropdown>
-
-
-
+                            
                         </Container>
                     </Container>
 
                     <Container style={{ width: 250 }}>
-                        <CircularProgressbar 
-                            // var percentage = {currentChild && currentChild.pointsEarned / currentReward && currentReward.rewardPoints}
-                            value={loadProgress()} 
-                            text={`${loadProgress()}%`}
+                        <CircularProgressbar                             
+                            value={percentage} 
+                            text={`${percentage}%`}
                             styles={buildStyles({
                                 
                                 // Rotation of path and trail, in number of turns (0-1)

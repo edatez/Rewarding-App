@@ -47,8 +47,8 @@ export default {
         return axios.put("/api/children/" + childId + "/" + rewardId + "/redeem", {});
     },
     
-    addPoint(child){
-        return axios.put("/api/children/", child)
+    addPoint(childID, rewardId){
+        return axios.put(`/api/children/${childID}`, rewardId)
     }
 
 }
