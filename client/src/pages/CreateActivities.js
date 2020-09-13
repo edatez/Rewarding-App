@@ -1,30 +1,15 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState } from "react";
 import { Columns, Container, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
 import api from "../utils/api";
 import { useStoreContext } from "../store";
 
 function CreateActivities () {
-    const [activities, setActivities] = useState([])
+    
     const [formObject, setFormObject] = useState({})
     const [state, dispatch]= useStoreContext()
 
-    // useEffect(() => {
-    //     loadActivities()
-    //   }, [])
-
-    // function loadActivities() {
-
-
-    //     (new Promise(r => setTimeout(r, 1000))).then( ()=> {
-    //         axios.get( "/api/activity")
-    //         .then(res => 
-    //             setActivities(res.data)
-    //         )
-    //         .catch(err => console.log(err))
-    //     });
-    // };
-
+    
     var handleInputChange = event => {
         const { name, value } = event.target;
         setFormObject({...formObject, [name]: value})
@@ -43,10 +28,8 @@ function CreateActivities () {
         .catch(err => console.log(err));
       };
     
-    var handleDelete = (name) => {
-        api.deleteActivity({
-            activity: name
-        })
+    var handleDelete = (activityId) => {
+        api.deleteActivity(activityId)
         .then(() => {
             window.location.reload()
         })
@@ -62,38 +45,33 @@ function CreateActivities () {
                 <Columns.Column className="is-narrow has-text-centered ">  
                     <Heading className="heading1">Create Activities</Heading>
 
-            <Container style={{ marginBottom: 40 }}>
-                {/* <Heading subtitle size={4}>
-                    Current Activity List
-                </Heading>                */}
-                    <Table className="is-narrow is-hoverable">
-                        <thead>
-                            <tr>                        
-                                <th>Activity</th>                        
-                                <th>Point</th>
-                                {/* <th>Delete</th> */}
-                                {/* <th>Show/Hide</th> */}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {state.user && state.user.activities.map(activity => (
-                            <tr key={activity.activity}>
-                                <td>{activity.activity}</td>                                
-                                <td>{activity.activityPoints}</td>
-                                {/* <td><Button className="is-rounded is-danger is-light" onClick={()=>handleDelete(activity.activity)}>Delete</Button></td> */}
-                                {/* <td>X</td> */}
-                            </tr>
-                            ))}
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tfoot>
+                    <Container style={{ marginBottom: 40 }}>                
+                        <Table className="is-narrow is-hoverable is-striped">
+                            <thead>
+                                <tr>                        
+                                    <th>Activity</th>                        
+                                    <th>Point</th>
+                                    <th>Delete</th>                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {state.user && state.user.activities.map(activity => (
+                                <tr key={activity._id}>
+                                    <td>{activity.activity}</td>                                
+                                    <td>{activity.activityPoints}</td>
+                                    <td><Button className="is-rounded is-danger is-light" onClick={()=>handleDelete(activity._id)}>Delete</Button></td>                                
+                                </tr>
+                                ))}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
 
-                            </Table>
+                        </Table>
                         
                     </Container>
                     

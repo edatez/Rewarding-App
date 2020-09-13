@@ -22,6 +22,17 @@ router.post("/", passport.authenticate('jwt', {session: false}), (req, res)=>{
     )
 });
 
+//to delete an activity
+
+router.delete("/:activityId", passport.authenticate('jwt', {session: false}), (req, res)=>{
+    
+    User.findByIdAndUpdate(req.user._id,{
+        $pull:{activities:{_id: req.params.activityId}}        
+    }).then((user) => {
+        res.send(user)
+    })
+});
+
 //using this route to update completed boolean 
 router.put("/:activityID/completed", passport.authenticate('jwt', {session: false}), (req, res)=>{
 
