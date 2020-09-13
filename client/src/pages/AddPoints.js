@@ -51,7 +51,7 @@ function AddPoints () {
                         
                     </Dropdown>
 
-                    <Heading subtitle size={5}>Current Balance: {50}</Heading>
+                    <Heading subtitle size={5}>Current Balance: {currentChild ? currentChild.pointsEarned : "select Child First"}</Heading>
 
                     <Container style={{ marginBottom: 40 }}>
                          
