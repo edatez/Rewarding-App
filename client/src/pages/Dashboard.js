@@ -7,9 +7,16 @@ import { useStoreContext } from "../store";
 // Import react-circular-progressbar module and styles
 import { CircularProgressbar, buildStyles} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useIsAuthenticated } from "../utils/auth";
 
 function Dashboard () {
+    // const isAuth=useIsAuthenticated()
     
+    // console.log(isAuth);
+    // if(!isAuth){
+        
+    // }
+
     const { Field } = Form;
 
     const [state, dispatch] = useStoreContext()
