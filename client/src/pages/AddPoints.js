@@ -18,6 +18,11 @@ function AddPoints () {
     function addChildrenPoints(event, activityPoints){
         event.preventDefault();
 
+        if(!currentChild) {
+            alert("Please select a child first");
+            return;
+        }
+
         console.log(currentChild._id)
         console.log(activityPoints)
 
