@@ -10,12 +10,6 @@ import "react-circular-progressbar/dist/styles.css";
 import { useIsAuthenticated } from "../utils/auth";
 
 function Dashboard () {
-    // const isAuth=useIsAuthenticated()
-    
-    // console.log(isAuth);
-    // if(!isAuth){
-        
-    // }
 
     const { Field } = Form;
 
