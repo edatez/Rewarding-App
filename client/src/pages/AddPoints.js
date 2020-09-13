@@ -40,11 +40,9 @@ function AddPoints () {
             <Container className="is-centered">
                 <Columns.Column className="is-narrow has-text-centered ">
 
-                    <Heading className="heading1">Add Points for <label id="child-selected"></label></Heading>                   
+                    <Heading className="heading1">Add Points for {currentChild ? currentChild.childName :""}</Heading>                   
 
-                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label={
-                        currentChild ? currentChild.childName : "Select Child"
-                    }>
+                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label="Select Child">
 
                         {state.user && state.user.children.map(child => (                                
                             <Dropdown.Item value={child}>                                    

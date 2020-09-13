@@ -34,11 +34,9 @@ function Dashboard () {
         <Container className="is-mobile">
             <Container className="is-centered">
                 <Container className="is-narrow has-text-centered">
-                    <Heading className="heading1">Dashboard for </Heading>
+                    <Heading className="heading1">Dashboard for {currentChild ? currentChild.childName :""}</Heading>
 
-                    <Dropdown className="heading1 mb-5" onChange={(value) => setChild(value)} label={
-                        currentChild ? currentChild.childName : "Select Child"
-                    }>
+                    <Dropdown className="heading1 mb-5" onChange={(value) => setChild(value)} label="Select Child">
 
                         {state.user && state.user.children.map(child => (                                
                             <Dropdown.Item value={child} key={child._id}>                                    
@@ -49,15 +47,14 @@ function Dashboard () {
                     </Dropdown>
 
                     <Container style={{ marginBottom: 40 }}>
-                        <Heading subtitle size={6}>
+                        <Heading subtitle size={5}>
                             Current balance = {currentChild ? currentChild.pointsEarned : 0}
                         </Heading>
                         <Container className="is-centered" >
 
-                            <Heading subtitle size={6}>Progress for <label id="reward-selected"></label></Heading>                           
+                            <Heading subtitle size={5}>Progress for {currentReward ? currentReward.rewardName :""}</Heading>                           
 
-                            <Dropdown className="heading1" onChange={(value) => setReward(value)} label={
-                                    currentReward ? currentReward.rewardName : "Select Reward" }>
+                            <Dropdown className="heading1" onChange={(value) => setReward(value)} label="Select Reward">
                                     {currentChild && currentChild.rewards.map(reward => (                               
                                         <Dropdown.Item value={reward} key={reward._id}>                                    
                                             {reward.rewardName}                          
