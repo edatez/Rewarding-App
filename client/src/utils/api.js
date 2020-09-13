@@ -61,10 +61,9 @@ export default {
 
     },
     
-    addPoint(childID, rewardId){
-
-        return axios.put(`/api/children/${childID}`, rewardId)
-
+    addPoint(childID, data){
+        console.log(`/api/children/${childID}/points`)
+        return axios.put(`/api/children/${childID}/points`, data)
     }
 
 }
