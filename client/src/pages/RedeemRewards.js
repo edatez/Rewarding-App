@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Columns, Container, Dropdown, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
 
@@ -20,7 +20,7 @@ function RedeemRewards () {
         const subtractPoints= -rewardPoints
         console.log(subtractPoints)
 
-        if(currentChild.pointsEarned>rewardPoints){
+        if(currentChild.pointsEarned>=rewardPoints){
             console.log("You can redeem this one with an API call")
             api.redeemReward(currentChild._id, rewardId)
             .then(() => {
@@ -48,11 +48,9 @@ function RedeemRewards () {
 
             <Container className="is-centered">
                 <Columns.Column className="is-narrow has-text-centered ">  
-                    <Heading className="heading1">Redeem Rewards for</Heading>
+                    <Heading className="heading1">Redeem Rewards for {currentChild ? currentChild.childName :""}</Heading>
 
-                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label={
-                        currentChild ? currentChild.childName : "Select Child"
-                    }>
+                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label="Select Child">
 
                         {state.user && state.user.children.map(child => (                                
                             <Dropdown.Item value={child} key={child._id}>                                    
@@ -115,5 +113,3 @@ function RedeemRewards () {
 
 export default RedeemRewards;
 
-// Table for current activities: show activities, points, checkbox to show/hide/delete
-// Form to enter activities, points

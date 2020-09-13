@@ -54,11 +54,9 @@ function CreateRewards () {
         <Container className="is-mobile">
             <Container className="is-centered">
                 <Columns.Column className="is-narrow has-text-centered ">  
-                    <Heading className="heading1">Create Rewards for</Heading>
+                    <Heading className="heading1">Create Rewards for {currentChild ? currentChild.childName :""}</Heading>
 
-                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label={
-                        currentChild ? currentChild.childName : "Select Child"
-                    }>
+                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label="Select Child">
 
                         {state.user && state.user.children.map(child => (                                
                             <Dropdown.Item value={child} key={child._id}>                                    
