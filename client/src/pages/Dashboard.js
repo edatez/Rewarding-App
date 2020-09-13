@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Container, Dropdown, Form, Button, Heading } from 'react-bulma-components';
 import "./style.sass";
-import $ from "jquery";
+
 import { useStoreContext } from "../store";
 
 // Import react-circular-progressbar module and styles
 import { CircularProgressbar, buildStyles} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { useIsAuthenticated } from "../utils/auth";
 
 function Dashboard () {
 
@@ -25,24 +24,10 @@ function Dashboard () {
     
     var setReward = (value) => {
         setCurrentReward(value);
-        setPercentage((100 * currentChild.pointsEarned / value.rewardPoints).toFixed(2));
-    }
+        setPercentage((100 * currentChild.pointsEarned / value.rewardPoints).toFixed(0));
+    }       
 
-    function loadProgress(reward) {        
-        $("#reward-selected").text(reward);
-    }
-
-    $(document).ready(function() {
-
-        // Check for click events on the navbar burger icon
-        $(".dropdown").click(function() {
-      
-            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-            $(".dropdown").toggleClass("is-active");
-            $(".dropdown-menu").toggleClass("is-active");
-                  
-        });
-      });
+    console.log(currentReward && currentReward.rewardPoints)    
     
     return (
             
@@ -69,42 +54,22 @@ function Dashboard () {
                         </Heading>
                         <Container className="is-centered" >
 
-                            <Heading subtitle size={6}>Progress for <label id="reward-selected"></label></Heading>                            
+                            <Heading subtitle size={6}>Progress for <label id="reward-selected"></label></Heading>                           
 
-                            <Dropdown className="heading1 mb-5" onChange={(value) => setReward(value)} label={
+                            <Dropdown className="heading1" onChange={(value) => setReward(value)} label={
                                     currentReward ? currentReward.rewardName : "Select Reward" }>
                                     {currentChild && currentChild.rewards.map(reward => (                               
-                                        <Dropdown.Item value={reward} onClick={()=>loadProgress(reward.rewardName)} key={reward._id}>                                    
+                                        <Dropdown.Item value={reward} key={reward._id}>                                    
                                             {reward.rewardName}                          
                                         </Dropdown.Item>
                                     ))}         
                             </Dropdown>
-                            {/* <div className="dropdown ml-3">
-                                <div className="dropdown-trigger">
-                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu2">
-                                    <span>Select Reward</span>
-                                    <span className="icon is-small">
-                                        <i className="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                                    </button>
-                                </div>
-
-                                <div className="dropdown-menu" id="dropdown-menu2" role="menu">
-                                    <div className="dropdown-content">
-                                        {currentChild && currentChild.rewards.map(reward => (                               
-                                            <Dropdown.Item value={reward.rewardName} onClick={()=>loadProgress(reward.rewardName)} key={reward._id}>                                    
-                                                {reward.rewardName}                          
-                                            </Dropdown.Item>
-                                        ))}                                        
-                                    </div>
-                                </div>
-                            </div>                            */}
-
+                            
                         </Container>
                     </Container>
 
                     <Container style={{ width: 250 }}>
-                        <CircularProgressbar 
+                        <CircularProgressbar                             
                             value={percentage} 
                             text={`${percentage}%`}
                             styles={buildStyles({

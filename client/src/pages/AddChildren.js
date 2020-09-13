@@ -27,9 +27,11 @@ function AddChildren () {
         .catch(err => console.log(err));
       };
     
-    var handleDelete = (name) => {
-        api.deleteChildren( "/api/children/" + name)
-        // .then(res => loadActivities())
+    var handleDelete = (childId) => {
+        api.deleteChildren(childId)
+        .then(() => {
+            window.location.reload()
+        })
         .catch(err => console.log(err));
     } 
     const { Field, Control } = Form;
@@ -53,7 +55,7 @@ function AddChildren () {
                                 {state.user && state.user.children.map(child => (
                                 <tr key={child._id}>
                                     <td>{child.childName}</td>                        
-                                    <td><Button className="is-rounded is-danger is-light" onClick={()=>handleDelete(child.childName)}>Delete</Button></td>                                    
+                                    <td><Button className="is-rounded is-danger is-light" onClick={()=>handleDelete(child._id)}>Delete</Button></td>                                    
                                 </tr>
                                 ))}
                             </tbody>

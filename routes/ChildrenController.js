@@ -27,7 +27,7 @@ router.delete("/:childID", passport.authenticate('jwt', {session:false}), (req,r
     User.findByIdAndUpdate(req.user._id, {
         $pull:{children:{_id: req.params.childID}}
     }).then((user)=>{
-            res.send(user)
+        res.send(user)
     })
 
 })
@@ -48,7 +48,14 @@ router.post("/:childID/rewards", passport.authenticate('jwt', { session: false }
 })
 
 // //to delete a reward
-// router.delete("/:childID/:rewardID")
+router.delete("/:childID/:rewardID", passport.authenticate('jwt', { session: false }), (req, res)=>{
+    User.findByIdAndUpdate({"_id":req.user._id, "children._id": req.params.childID}, {
+        $pull:{"children.$[].rewards":{_id: req.params.rewardID}}
+    }).then((user)=>{
+        res.send(user)
+    })
+    
+})
 
 //using this route to redeem a reward
 router.put("/:childID/:rewardID/redeem", passport.authenticate('jwt', {session: false}), (req, res)=>{

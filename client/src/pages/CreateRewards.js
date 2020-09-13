@@ -5,26 +5,11 @@ import api from "../utils/api";
 import { useStoreContext } from "../store";
 
 function CreateRewards () {
-    const [rewards, setRewards] = useState([])
+    // const [rewards, setRewards] = useState([])
     const [formObject, setFormObject] = useState({})
     const [state, dispatch] = useStoreContext()
     const [currentChild, setCurrentChild] = useState()
     const { Field, Control } = Form;
-
-    // useEffect(() => {
-    //     loadRewards()
-    //   }, [])
-
-    // const api = "http://localhost:3001";
-    // function loadRewards() {
-    //     (new Promise(r => setTimeout(r, 1000))).then( ()=> {
-    //         axios.get(api + "/api/reward")
-    //         .then(res => 
-    //             setRewards(res.data)
-    //         )
-    //         .catch(err => console.log(err))
-    //     });
-    // };
 
     var handleInputChange = event => {
         const { name, value } = event.target;
@@ -50,17 +35,19 @@ function CreateRewards () {
         .catch(err => console.log(err));
       };
     
-    var handleDelete = (name) => {
-        api.deleteReward({
-            reward: name
-        })
+    var handleDelete = (rewardId) => {
+
+        if(!currentChild) {
+            alert("Please select a child first");
+            return;
+        }
+
+        api.deleteReward(currentChild._id, rewardId)
         .then(() => {
             window.location.reload()
         })
         .catch(err => console.log(err));
-    };
-
-    
+    };    
        
     return (
             
@@ -85,12 +72,12 @@ function CreateRewards () {
                         {/* <Heading subtitle size={4}>
                             Current Reward List
                         </Heading>                */}
-                            <Table className="is-narrow is-hoverable is-bordered">
+                            <Table className="is-narrow is-hoverable is-striped">
                                 <thead> 
                                     <tr>                        
-                                        <th>Reward</th>                        
-                                        <th>Point</th>
-                                        {/* <th>Delete</th> */}                                        
+                                        <th>Rewards</th>                        
+                                        <th>Points</th>
+                                        <th>Delete</th>                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -98,10 +85,17 @@ function CreateRewards () {
                                     <tr key={reward._id}>
                                         <th>{reward.rewardName}</th>                                
                                         <td>{reward.rewardPoints}</td>
-                                        {/*<td><Button className="is-primary is-rounded" onClick={()=>handleDelete(reward.reward)}>Delete</Button></td> */}                                       
+                                        <td><Button className="is-rounded is-danger is-light" onClick={()=>handleDelete(reward._id)}>Delete</Button></td>                                       
                                     </tr>
                                     ))}
                                 </tbody>
+                                <tfoot> 
+                                    <tr>                        
+                                        <td></td>                        
+                                        <td></td>
+                                        <td></td>                                       
+                                    </tr>
+                                </tfoot>
                             </Table>
                         
                     </Container>
@@ -144,7 +138,3 @@ function CreateRewards () {
 }
 
 export default CreateRewards;
-
-// Table for current Rewards: show Rewards, points, checkbox to show/hide/delete
-// Form to enter Rewards, points
-

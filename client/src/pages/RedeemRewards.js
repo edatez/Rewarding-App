@@ -48,14 +48,10 @@ function RedeemRewards () {
 
                     <Heading subtitle size={5}>Current Balance: {50}</Heading>
 
-                    <Container style={{ marginBottom: 40 }}>
-                        <Heading subtitle size={5} className="heading2" >
-                            Select Reward to Redeem
-                        </Heading>               
-                            <Table className="is-narrow is-hoverable is-bordered">
+                    <Container style={{ marginBottom: 40 }}>                                    
+                            <Table className="is-narrow is-hoverable is-striped">
                                 <thead>
-                                    <tr>      
-                                        <th></th>                          
+                                    <tr>                                                 
                                         <th>Reward</th>                        
                                         <th>Point</th>
                                         <th>Redeem</th>                                
@@ -64,8 +60,7 @@ function RedeemRewards () {
                                 <tbody>
                                     { currentChild && state.user  ? 
                                     currentChild.rewards.map(reward => (
-                                    <tr key={reward._id}>                                        
-                                        <td><img style={{ width: 40, marginTop: -5 }} src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/bike-128.png"></img></td> 
+                                    <tr key={reward._id}>                                         
                                         <td>{reward.rewardName}</td>                              
                                         <td>{reward.rewardPoints}</td>
                                         <td><Button disabled={reward.redeemed} className="is-primary is-rounded" onClick={event => redeemChildrenRewards(event, reward._id)}>Redeem</Button></td>
@@ -75,6 +70,13 @@ function RedeemRewards () {
                                         <td colSpan="4">Select a child to see rewards list</td>
                                     </tr> }
                                 </tbody>
+                                <tfoot>
+                                    <tr>                                                          
+                                        <td></td>                        
+                                        <td></td>
+                                        <td></td>                                
+                                    </tr>
+                                </tfoot>
 
                             </Table>
                         
