@@ -64,7 +64,7 @@ function Dashboard () {
                     }>
 
                         {state.user && state.user.children.map(child => (                                
-                            <Dropdown.Item value={child}>                                    
+                            <Dropdown.Item value={child} key={child._id}>                                    
                                 {child.childName}                          
                             </Dropdown.Item>
                         ))}                        

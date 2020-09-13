@@ -95,7 +95,7 @@ function CreateRewards () {
                                 </thead>
                                 <tbody>
                                     {currentChild && currentChild.rewards.map(reward=> (
-                                    <tr key={reward.reward}>
+                                    <tr key={reward._id}>
                                         <th>{reward.rewardName}</th>                                
                                         <td>{reward.rewardPoints}</td>
                                         {/*<td><Button className="is-primary is-rounded" onClick={()=>handleDelete(reward.reward)}>Delete</Button></td> */}                                       
