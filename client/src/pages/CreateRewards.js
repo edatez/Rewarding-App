@@ -88,8 +88,8 @@ function CreateRewards () {
                             <Table className="is-narrow is-hoverable is-bordered">
                                 <thead> 
                                     <tr>                        
-                                        <th>Reward</th>                        
-                                        <th>Point</th>
+                                        <th>Rewards</th>                        
+                                        <th>Points</th>
                                         {/* <th>Delete</th> */}                                        
                                     </tr>
                                 </thead>
