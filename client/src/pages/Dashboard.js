@@ -9,32 +9,23 @@ import { CircularProgressbar, buildStyles} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 function Dashboard () {
-
-    const percentage = 110;  
     
     const { Field } = Form;
-
-    const [rewards, setRewards] = useState([])
 
     const [state, dispatch] = useStoreContext()
 
     const [currentChild, setCurrentChild] = useState()
+    const [currentReward, setCurrentReward] = useState()
+    const [percentage, setPercentage] = useState(0)
 
-    useEffect(() => {
-        // loadRewards()
-      }, [])
-
-    function loadRewards() {
-        // (new Promise(r => setTimeout(r, 1000))).then( ()=> {
-        //     axios.get(api + "/api/reward")
-        //     .then(res => 
-        //         setRewards(res.data)
-        //     )
-        //     .catch(err => console.log(err))
-        // });
-        // TODO use current child's rewards
-        setRewards(state.user.children.rewards);
-    };
+    var setChild = (value) => {
+        setCurrentChild(value);
+    }
+    
+    var setReward = (value) => {
+        setCurrentReward(value);
+        setPercentage((100 * currentChild.pointsEarned / value.rewardPoints).toFixed(2));
+    }
 
     function loadProgress(reward) {        
         $("#reward-selected").text(reward);
@@ -59,12 +50,12 @@ function Dashboard () {
                 <Container className="is-narrow has-text-centered">
                     <Heading className="heading1">Dashboard for </Heading>
 
-                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label={
+                    <Dropdown className="heading1 mb-5" onChange={(value) => setChild(value)} label={
                         currentChild ? currentChild.childName : "Select Child"
                     }>
 
                         {state.user && state.user.children.map(child => (                                
-                            <Dropdown.Item value={child}>                                    
+                            <Dropdown.Item value={child} key={child._id}>                                    
                                 {child.childName}                          
                             </Dropdown.Item>
                         ))}                        
@@ -73,15 +64,23 @@ function Dashboard () {
 
                     <Container style={{ marginBottom: 40 }}>
                         <Heading subtitle size={6}>
-                            Current balance = {50}
+                            Current balance = {currentChild ? currentChild.pointsEarned : 0}
                         </Heading>
                         <Container className="is-centered" >
 
                             <Heading subtitle size={6}>Progress for <label id="reward-selected"></label></Heading>                            
 
-                            <div className="dropdown ml-3">
+                            <Dropdown className="heading1 mb-5" onChange={(value) => setReward(value)} label={
+                                    currentReward ? currentReward.rewardName : "Select Reward" }>
+                                    {currentChild && currentChild.rewards.map(reward => (                               
+                                        <Dropdown.Item value={reward} onClick={()=>loadProgress(reward.rewardName)} key={reward._id}>                                    
+                                            {reward.rewardName}                          
+                                        </Dropdown.Item>
+                                    ))}         
+                            </Dropdown>
+                            {/* <div className="dropdown ml-3">
                                 <div className="dropdown-trigger">
-                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu2">
                                     <span>Select Reward</span>
                                     <span className="icon is-small">
                                         <i className="fas fa-angle-down" aria-hidden="true"></i>
@@ -89,16 +88,16 @@ function Dashboard () {
                                     </button>
                                 </div>
 
-                                <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                                <div className="dropdown-menu" id="dropdown-menu2" role="menu">
                                     <div className="dropdown-content">
                                         {currentChild && currentChild.rewards.map(reward => (                               
-                                            <Dropdown.Item value={reward.reward} onClick={()=>loadProgress(reward.reward)}>                                    
-                                                {reward.reward}                          
+                                            <Dropdown.Item value={reward.rewardName} onClick={()=>loadProgress(reward.rewardName)} key={reward._id}>                                    
+                                                {reward.rewardName}                          
                                             </Dropdown.Item>
                                         ))}                                        
                                     </div>
                                 </div>
-                            </div>                           
+                            </div>                            */}
 
                         </Container>
                     </Container>
