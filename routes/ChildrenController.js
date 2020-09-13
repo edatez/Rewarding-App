@@ -7,7 +7,7 @@ const passport = require("passport");
 
 //Using this route to make a child
 router.post("/", passport.authenticate('jwt', { session: false }), (req, res)=>{
-
+    console.log(req.body)
     User.findByIdAndUpdate(req.user._id, {
         $push: {
             children:{
@@ -64,10 +64,12 @@ router.put("/:childID/:rewardID/redeem", passport.authenticate('jwt', {session: 
 //using this route to add points to a child
 router.put("/:childID/points", passport.authenticate('jwt', {session:false}), (req, res)=>{
 
+    console.log("addpoints route hit")
+    console.log(req.body.activityPoints)
     User.findById(req.user._id)
     .then ((user)=>{
         const child = user.children.id(req.params.childID)
-        child.pointsEarned = child.pointsEarned + req.body.additionalPoints
+        child.pointsEarned = child.pointsEarned + req.body.activityPoints
         user.save()
         .then(()=>{res.json(user)})
     })

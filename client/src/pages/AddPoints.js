@@ -15,19 +15,17 @@ function AddPoints () {
 
     console.log(currentChild);
 
-    var addChildrenPoints = (event, name) => {
+    function addChildrenPoints(event, activityPoints){
         event.preventDefault();
 
-        alert("Adding '"+ name + "' points")
+        console.log(currentChild._id)
+        console.log(activityPoints)
 
-        // TODO update current child's points before sending the request
-        var currentChild = state.user.children[0];
-
-        api.AddPoint(currentChild)
-            .then(() => {
+        api.addPoint(currentChild._id, {activityPoints})
+            .then(()=>{
                 window.location.reload()
             })
-            .catch(err => console.log(err));
+            .catch(err=> console.log(err));
 
     }      
 
@@ -67,8 +65,8 @@ function AddPoints () {
                             {state.user && state.user.activities.map(activity => (
                             <tr key={activity._id}>                                
                                 <td>{activity.activity}</td>                                
-                                <td>{activity.activityPoints}</td>
-                                <td><Button className="is-primary is-rounded" onClick={event => addChildrenPoints(event, activity.activity)}>Add Points</Button></td>                                
+                                <td value={activity.activityPoints}>{activity.activityPoints}</td>
+                                <td><Button className="is-primary is-rounded" onClick={event => addChildrenPoints(event, activity.activityPoints)}>Add Points</Button></td>                                
                             </tr>
                             ))}
                         </tbody>
