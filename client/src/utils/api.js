@@ -26,29 +26,45 @@ export default {
 
     },
 
+    deleteActivity(activityId){
+        
+        return axios.delete("/api/activity/" + activityId);
+
+    },
+
     addChildren(data){
 
         return axios.post("/api/children/", data);
 
     },
 
-    deleteChildren(data){
+    deleteChildren(childId){
 
-        return axios.delete("/api/children/", data);
+        return axios.delete("/api/children/" + childId);
 
     },
 
     createReward(childId, data){
+
         return axios.post("/api/children/" + childId + "/rewards", data);
+    },
+
+    deleteReward(childId, rewardId){
+
+        return axios.delete("/api/children/" + childId + "/" + rewardId);
     },
 
     
     redeemReward(childId, rewardId){
+
         return axios.put("/api/children/" + childId + "/" + rewardId + "/redeem", {});
+
     },
     
     addPoint(childID, rewardId){
+
         return axios.put(`/api/children/${childID}`, rewardId)
+
     }
 
 }
