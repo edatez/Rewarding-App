@@ -10,19 +10,35 @@ function RedeemRewards () {
     const [currentChild, setCurrentChild] = useState()
     const { Field } = Form;
 
-    var redeemChildrenRewards = (event, rewardId) => {
+    var redeemChildrenRewards = (event, rewardId, rewardPoints) => {
         event.preventDefault();
         
-        if(!currentChild) {
-            alert("Please select a child first");
-            return;
+        console.log(currentChild.pointsEarned)
+        console.log(rewardPoints)
+        console.log(currentChild)
+
+        const subtractPoints= -rewardPoints
+        console.log(subtractPoints)
+
+        if(currentChild.pointsEarned>rewardPoints){
+            console.log("You can redeem this one with an API call")
+            api.redeemReward(currentChild._id, rewardId)
+            .then(() => {
+                window.location.reload()
+            })
+            .catch(err => console.log(err));
+            api.addPoint(currentChild._id, {activityPoints:subtractPoints})
+                .then(()=>{
+                    window.location.reload()
+                })
+                .catch(err=>console.log(err))
+
+            return
+        }{
+            alert("You dont have enough points for that!")
         }
 
-        api.redeemReward(currentChild._id, rewardId)
-        .then(() => {
-            window.location.reload()
-        })
-        .catch(err => console.log(err));
+
     } 
    
        
@@ -46,7 +62,7 @@ function RedeemRewards () {
                         
                     </Dropdown>
 
-                    <Heading subtitle size={5}>Current Balance: {50}</Heading>
+                    <Heading subtitle size={5}>Current Balance: {currentChild ? currentChild.pointsEarned : "select Child First"}</Heading>
 
                     <Container style={{ marginBottom: 40 }}>                                    
                             <Table className="is-narrow is-hoverable is-striped">
@@ -63,7 +79,7 @@ function RedeemRewards () {
                                     <tr key={reward._id}>                                         
                                         <td>{reward.rewardName}</td>                              
                                         <td>{reward.rewardPoints}</td>
-                                        <td><Button disabled={reward.redeemed} className="is-primary is-rounded" onClick={event => redeemChildrenRewards(event, reward._id)}>Redeem</Button></td>
+                                        <td><Button disabled={reward.redeemed} className="is-primary is-rounded" onClick={event => redeemChildrenRewards(event, reward._id, reward.rewardPoints)}>Redeem</Button></td>
                                     </tr>
                                     )) : 
                                     <tr key="None">
