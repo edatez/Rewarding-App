@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuthTokenStore } from "./utils/auth";
+import { useAuthTokenStore, useIsAuthenticated } from "./utils/auth";
 
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Home from "./pages/Home";
@@ -19,8 +19,11 @@ import "./App.sass";
 import AddChildren from "./pages/AddChildren";
 
 function App() {
+
+  const isAuth = useIsAuthenticated()
   
   useAuthTokenStore();
+  
 
     return (
           <div className="App">
@@ -28,7 +31,13 @@ function App() {
             <Router>
             <Navbar></Navbar>
               <div className="mainContent">
-                <Route exact path="/" component={Home} />
+                {
+                  isAuth
+                    ? <Route exact path="/" component={Dashboard} />
+                    
+                    : <Route exact path="/" component={Home} />
+                }
+                {/* <Route exact path="/" component={Dashboard} /> */}
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/add-children" component={AddChildren} />
@@ -48,7 +57,7 @@ function App() {
           </div>
     );
 
-  }
+}
 
 
 export default App;
