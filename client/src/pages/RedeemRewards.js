@@ -48,7 +48,7 @@ function RedeemRewards () {
 
             <Container className="is-centered">
                 <Columns.Column className="is-narrow has-text-centered ">  
-                    <Heading className="heading1">Redeem Rewards for {currentChild ? currentChild.childName :""}</Heading>
+                    <Heading className="heading1">Redeem Rewards for <span className="red">{currentChild ? currentChild.childName :""}</span></Heading>
 
                     <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label="Select Child">
 
@@ -60,7 +60,7 @@ function RedeemRewards () {
                         
                     </Dropdown>
 
-                    <Heading subtitle size={5}>Current Balance: {currentChild ? currentChild.pointsEarned : "select Child First"}</Heading>
+                    <Heading subtitle size={5}>Current Balance: <span className="red">{currentChild ? currentChild.pointsEarned : "select Child First"}</span></Heading>
 
                     <Container style={{ marginBottom: 40 }}>                                    
                             <Table className="is-narrow is-hoverable is-striped">

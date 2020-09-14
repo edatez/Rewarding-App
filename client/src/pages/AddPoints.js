@@ -40,7 +40,7 @@ function AddPoints () {
             <Container className="is-centered">
                 <Columns.Column className="is-narrow has-text-centered ">
 
-                    <Heading className="heading1">Add Points for {currentChild ? currentChild.childName :""}</Heading>                   
+                    <Heading className="heading1">Add Points for <span className="red">{currentChild ? currentChild.childName :""}</span></Heading>                   
 
                     <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label="Select Child">
 
@@ -52,7 +52,7 @@ function AddPoints () {
                         
                     </Dropdown>
 
-                    <Heading subtitle size={5}>Current Balance: {currentChild ? currentChild.pointsEarned : "select Child First"}</Heading>
+                    <Heading subtitle size={5}>Current Balance: <span className="red">{currentChild ? currentChild.pointsEarned : "select Child First"}</span></Heading>
 
                     <Container style={{ marginBottom: 40 }}>
                          
@@ -88,6 +88,11 @@ function AddPoints () {
                     <Container style={{ marginTop: 40 }}>                         
                         <Field>                            
                             <Button className="is-primary is-rounded" ><a className="has-text-white" href="/create-activities">Create Activities</a></Button>                            
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <Button className="is-primary is-rounded" ><a className="has-text-white" href="/dashboard">Dashboard</a></Button>
+                            <Button className="is-primary is-rounded" ><a className="has-text-white" href="/redeem-rewards">Redeem Rewards</a></Button>
                         </Field>               
                     </Container>
                 </Columns.Column>

@@ -54,7 +54,7 @@ function CreateRewards () {
         <Container className="is-mobile">
             <Container className="is-centered">
                 <Columns.Column className="is-narrow has-text-centered ">  
-                    <Heading className="heading1">Create Rewards for {currentChild ? currentChild.childName :""}</Heading>
+                    <Heading className="heading1">Create Rewards for <span className="red">{currentChild ? currentChild.childName :""}</span></Heading>
 
                     <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label="Select Child">
 
