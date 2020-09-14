@@ -18,6 +18,7 @@ function AddChildren () {
     var handleFormSubmit = event => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         event.preventDefault();
+        console.log("addchild");
         api.addChildren({
             childName: formObject.childName,            
           })
