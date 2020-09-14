@@ -34,7 +34,8 @@ function Dashboard () {
         <Container className="is-mobile">
             <Container className="is-centered">
                 <Container className="is-narrow has-text-centered">
-                    <Heading className="heading1">Dashboard for {currentChild ? currentChild.childName :""}</Heading>
+                    <Heading className="heading1">Dashboard for <span className="red">{currentChild ? currentChild.childName :""}</span> </Heading>
+                    
 
                     <Dropdown className="heading1 mb-5" onChange={(value) => setChild(value)} label="Select Child">
 
@@ -45,10 +46,13 @@ function Dashboard () {
                         ))}                        
                         
                     </Dropdown>
-
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
                     <Container style={{ marginBottom: 40 }}>
                         <Heading subtitle size={5}>
-                            Current balance = {currentChild ? currentChild.pointsEarned : 0}
+                            Current balance = <span className="red">{currentChild ? currentChild.pointsEarned : 0}</span>
                         </Heading>
                         <Container className="is-centered" >
 
