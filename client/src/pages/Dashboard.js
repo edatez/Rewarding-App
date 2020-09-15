@@ -15,11 +15,16 @@ function Dashboard () {
     const [state, dispatch] = useStoreContext()
 
     const [currentChild, setCurrentChild] = useState()
+    const [currentChildBtn, setCurrentChildBtn] = useState()
     const [currentReward, setCurrentReward] = useState()
     const [percentage, setPercentage] = useState(0)
 
     var setChild = (value) => {
+        console.log(value)
         setCurrentChild(value);
+        let url= `/add-points/${value.childName || ""}`
+        console.log("url:", url,value)
+        setCurrentChildBtn(url)
     }
     
     var setReward = (value) => {
@@ -37,14 +42,13 @@ function Dashboard () {
                     <Heading className="heading1">Dashboard for <span className="red">{currentChild ? currentChild.childName :""}</span> </Heading>
                     
 
-                    <Dropdown className="heading1 mb-5" onChange={(value) => setChild(value)} label="Select Child">
+                    <Dropdown className="heading1 mb-5" value={currentChild} onChange={(value) => setChild(value)} label="Select Child">
 
                         {state.user && state.user.children.map(child => (                                
                             <Dropdown.Item value={child} key={child._id}>                                    
                                 {child.childName}                          
                             </Dropdown.Item>
                         ))}                        
-                        
                     </Dropdown>
                     <br></br>
                     <br></br>
@@ -56,7 +60,7 @@ function Dashboard () {
                         </Heading>
                         <Container className="is-centered" >
 
-                            <Heading subtitle size={5}>Progress for {currentReward ? currentReward.rewardName :""}</Heading>                           
+                            <Heading subtitle size={5}>Progress for <span className="red">{currentReward ? currentReward.rewardName :""}</span></Heading>                           
 
                             <Dropdown className="heading1" onChange={(value) => setReward(value)} label="Select Reward">
                                     {currentChild && currentChild.rewards.map(reward => (                               
@@ -106,7 +110,7 @@ function Dashboard () {
                     <Container style={{ marginTop: 40, marginBottom: 50 }}>
                         <Field>
                             
-                                <Button className="is-primary is-rounded" ><a className="has-text-white" href="/add-points">Add Points</a></Button>
+                                <Button className="is-primary is-rounded" ><a className="has-text-white" href= "/add-points">Add Points</a></Button>
                             
                         </Field>
 
@@ -116,6 +120,7 @@ function Dashboard () {
                             
                         </Field>
                     </Container>
+
 
                 </Container>
             </Container>

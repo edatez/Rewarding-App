@@ -25,7 +25,7 @@ function About() {
 
             <p style={{color:"black", fontSize: "20px",  opacity: "0.85" }} size={3}>
                 
-            <Heading  size={5}>Motivate your kids with Positive Reinforcement!</Heading>
+            <Heading style={{fontFamily:"'Montserrat', sans-serif" }} size={5}>Motivate your kids with Positive Reinforcement!</Heading>
                 <p style={{fontFamily:"'Montserrat', sans-serif", opacity: "0.8" }}>
                 <br />
                EARN POINTS via activities,  

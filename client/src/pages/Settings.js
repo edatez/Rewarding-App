@@ -1,33 +1,31 @@
 import React from "react";
-import { Content, Button } from "react-bulma-components";
+import { Icon, Content, Button } from "react-bulma-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 
 function Settings() {
-  return (
- 
-     <Content className="has-text-centered"> 
-      <p>
-     
-        <a href="/login">Start Your Motivation!</a>. .
-      </p>
-      <Button className="is-primary is-rounded"><a className="has-text-white" href="/add-children">Add Children</a></Button>
-      <br></br>
-      <br></br>
-      <Button className="is-primary is-rounded"><a className="has-text-white" href="/add-points">Add Points</a></Button>
-      <br></br>
-      <br></br>
-      <Button className="is-primary is-rounded"><a className="has-text-white" href="/create-rewards">Create Rewards</a></Button>
-      <br></br>
-      <br></br>
-      <Button className="is-primary is-rounded"><a className="has-text-white" href="/create-activities">Create Activities</a></Button>
-      <br></br>
-      <br></br>
-      <Button className="is-primary is-rounded" ><a className="has-text-white" href="/redeem-rewards">Redeem Rewards</a></Button>
-      <br></br>
-      <br></br>
-      <Button className="is-primary is-rounded"><a className="has-text-white" href="/dashboard">Dashboard</a></Button>
-    </Content> 
 
+  return (
+<div class="container">
+  <div class="notification">
+
+    <Button className="button"><a href="/dashboard">Dashboard</a></Button> 
+    <br></br>
+    <br></br>
+    <Button className="button"><a href="/add-children">Add Children</a></Button>   
+    <br></br>
+    <br></br>
+    <Button className="button"><a href="/settings">My Account</a></Button>
+    <br></br>
+    <br></br>
+    <Button className="button"><a href="/settings">Privacy</a></Button> 
+    <br></br>
+    <br></br>
+    <Button className="button"><a href="/settings">Help Center</a></Button> 
+      
+  </div>
+</div>
   );
 }
 

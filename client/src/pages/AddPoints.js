@@ -15,6 +15,8 @@ function AddPoints () {
 
     console.log(currentChild);
 
+
+
     function addChildrenPoints(event, activityPoints){
         event.preventDefault();
 
@@ -42,7 +44,7 @@ function AddPoints () {
 
                     <Heading className="heading1">Add Points for <span className="red">{currentChild ? currentChild.childName :""}</span></Heading>                   
 
-                    <Dropdown className="heading1 mb-5" onChange={(value) => setCurrentChild(value)} label="Select Child">
+                    <Dropdown className="heading1 mb-5" value={currentChild} onChange={(value) => setCurrentChild(value)} label="Select Child">
 
                         {state.user && state.user.children.map(child => (                                
                             <Dropdown.Item value={child}>                                    
