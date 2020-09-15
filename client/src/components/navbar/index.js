@@ -49,8 +49,16 @@ function RewardNavbar() {
                   About 
                 </Navbar.Item>            
                 
-                <Navbar.Item href="/settings">
-                  Settings 
+                <Navbar.Item className="has-dropdown is-hoverable" value="Settings" >                  
+                  <a className="navbar-link" href="/settings">Settings</a> 
+                  <Navbar.Dropdown>
+                    <Navbar.Item><a href="/Dashboard">Dashboard</a></Navbar.Item>
+                    <Navbar.Item><a href="/add-children">Add Children</a></Navbar.Item>
+                    <Navbar.Item><a href="/create-activities">Create Activities</a></Navbar.Item>
+                    <Navbar.Item><a href="/create-rewards">Create Rewards</a></Navbar.Item>
+                    <Navbar.Item><a href="/add-points">Add Points</a></Navbar.Item>
+                    <Navbar.Item><a href="/redeem-rewards">Redeem Rewards</a></Navbar.Item>
+                  </Navbar.Dropdown>
                 </Navbar.Item>
 
                 {
