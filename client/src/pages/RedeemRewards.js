@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Columns, Container, Dropdown, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
 
@@ -9,6 +9,16 @@ function RedeemRewards () {
     const [state, dispatch] = useStoreContext()
     const [currentChild, setCurrentChild] = useState()
     const { Field } = Form;
+
+    useEffect (() => {
+
+        if (state.user) {
+
+            setCurrentChild (state.user.children[0])
+
+        }
+
+    }, [state.user])
 
     var redeemChildrenRewards = (event, rewardId, rewardPoints) => {
         event.preventDefault();

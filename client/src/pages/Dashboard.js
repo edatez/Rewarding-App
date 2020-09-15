@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Dropdown, Form, Button, Heading } from 'react-bulma-components';
 import "./style.sass";
 
@@ -19,6 +19,16 @@ function Dashboard () {
     const [currentReward, setCurrentReward] = useState()
     const [percentage, setPercentage] = useState(0)
 
+    useEffect (() => {
+
+        if (state.user) {
+
+            setCurrentChild (state.user.children[0])
+
+        }
+
+    }, [state.user])
+    
     var setChild = (value) => {
         console.log(value)
         setCurrentChild(value);
@@ -30,8 +40,9 @@ function Dashboard () {
     var setReward = (value) => {
         setCurrentReward(value);
         setPercentage((100 * currentChild.pointsEarned / value.rewardPoints).toFixed(0));
-    }       
-
+    }  
+    
+    
     console.log(currentReward && currentReward.rewardPoints)    
     
     return (

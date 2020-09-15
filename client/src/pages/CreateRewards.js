@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { Columns, Container, Dropdown, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
 import api from "../utils/api";
@@ -10,6 +10,16 @@ function CreateRewards () {
     const [state, dispatch] = useStoreContext()
     const [currentChild, setCurrentChild] = useState()
     const { Field, Control } = Form;
+
+    useEffect (() => {
+
+        if (state.user) {
+
+            setCurrentChild (state.user.children[0])
+
+        }
+
+    }, [state.user])
 
     var handleInputChange = event => {
         const { name, value } = event.target;
