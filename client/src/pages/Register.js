@@ -25,7 +25,7 @@ function Register() {
         api
             .register({ name, email, password, password2 })
             .then(()=>login( { email, password } ) )
-            .then(()=>window.location.href = "./dashboard" );
+            .then(()=>window.location.href = "./add-children" );
        
     }
 
@@ -74,7 +74,7 @@ function Register() {
                     </Field>            
                     <br />
                     <Field>                        
-                        <Button className="is-primary is-rounded"><a className="has-text-white" href="/add-children">Submit</a></Button>                        
+                        <Button className="is-primary is-rounded">Submit</Button>                        
                     </Field>           
                     </form>
                 </Columns.Column> 
