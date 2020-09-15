@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Columns, Container, Dropdown, Form, Button, Heading, Table } from 'react-bulma-components';
 import "./style.sass";
 
@@ -13,9 +13,15 @@ function AddPoints () {
 
     const { Field } = Form;
 
-    console.log(currentChild);
+    useEffect (() => {
 
+        if (state.user) {
 
+            setCurrentChild (state.user.children[0])
+
+        }
+
+    }, [state.user])
 
     function addChildrenPoints(event, activityPoints){
         event.preventDefault();
