@@ -42,7 +42,7 @@ function Dashboard () {
                     <Heading className="heading1">Dashboard for <span className="red">{currentChild ? currentChild.childName :""}</span> </Heading>
                     
 
-                    <Dropdown className="heading1 mb-5" value={currentChild} onChange={(value) => setChild(value)} label="Select Child">
+                    <Dropdown className="heading1 mb-5" onChange={(value) => setChild(value)} label="Select Child">
 
                         {state.user && state.user.children.map(child => (                                
                             <Dropdown.Item value={child} key={child._id}>                                    
